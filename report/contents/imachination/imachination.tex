@@ -1,7 +1,3 @@
-
-
-
-
 \section{Imachination}
                 + Beskriv spillet og screendumps
 Spillet skal forestille at være produktet af et barns fantasi. Drengen leger i sin sandkasse at han graver sig til kina og for at komme igennem jorden må han bygge en robot og kæmpe sig vej mod underlige væsener og andre robotter.
@@ -13,6 +9,9 @@ Man bygger sin robot ved at drag-n-droppe våben ned på ens robot. Det er ligel
 [Screenshot af RTS]
 Man kører ved at holde musen nede og flytte cursoren i den retning man ønsker at bevæge sig. Robotten roterer hele tiden for at holde fronten mod cursoren. Det er muligt at trykke på sig selv og derved affyre sin repulsor. Målet er at positionere sigselv så det er muligt at ødelægge de 'hives' der befinder sig rundt i banerne og derefter at besejre bossen uden at dø.
 
+[Screenshot af progress gennem jorden]
+--børns fantasi og WOAW effekt.
+
 \subsection{Forløb}
 
                 + generelle forløb (scrum, arbejdsmetoder)
@@ -21,6 +20,7 @@ Før selve produktionen startede var vi en håndfuld fra gruppen der satte os ne
 For programmørenes del startede udviklingen todelt. Da vores spil består af to vidt forskellige dele, bygge delen og RTS delen, og derfor startede vi med at lave prototyper inddelt i 2 grupper. Sammen med en anden programmør blev jeg sat til at prototype en kasse der kunne følge efter musen i et RTS lignende kameraview. De to dele skulle så senere sættes sammen i spillet.
 
 Vores projekt blev kørt med ''scrum'' møder hver morgen hvor hver enkelt fortalte hvad der var blevet  lavet dagen før, og hvad der var planlagt at man skulle bruge dagen på.
+Derudover var der ikke meget styring af udviklingen. Der var lead-møder hvor leads fra hvert felt snakkede med director, designer og project manager, men udover det var der ikke meget koordinering. Internt på programmør holdet havde vores lead et vist overblik over hvor langt vi var nået, men deudover arbejdede vi bare derudaf.
 
 
 
@@ -32,7 +32,9 @@ movement
 - raycast
 - translatering
 - fysik = force
---turnspeed
+-- turnspeed
+-- accelerering og decelerering
+-- opdrift
 -- turn UI
 
 prototyping af våben
@@ -52,20 +54,22 @@ hjælpe alle artister med at få deres lort ind.
 movement blev lavet om 3 gange.
 simplemove -> fysik
 
-          o AI i vores spil og hvordan de relaterer sig til vores opgave
-                + hvad er der af AI i vores spil
+\subsection{AI i spillet}
 
+                + hvad er der af AI i vores spil
 Vores små fjender bruger en simpel A* pathfinding algoritme. Der bliver genereret et grid indenfor en boundingbox ved hjælp af raytracing kastet højt oppe fra. Ved alle intersects bliver der lavet en knude. Hvis rayen kolliderer med et object tagged som ''wall'' kan knuden ikke benyttes. Derfor skal alle objecter der ikke kan paseres tagges som ''wall''.
 De finder derefter den korteste vej til spilleren og roterer så deres ''forward''-vektor peger mod den næste knude i stien. De bliver hele tiden flyttet frem i deres ''forward'' retning. Hvis de vender væk fra den vej de gerne vil bliver bevægelseshastigheden sat ned proportionalt med vinklen mellem den ønskede retning og den nuværende retning.
 Når en fjende kommer tæt nok på spilleren stopper den bevægelse mod ''forward'' retningen og roterer blot mod spilleren samtidig med den angriber. 
+Oprindeligt var der lagt op til to typer fjender. Vi ville have implementeret nogle skydende versioner af de små fjender, sådan at de ikke alle blot løber hen i døden, men på grund af tidsmangel blev disse fraskrevet.
 
-Vores boss AI bruger samme pathfinding som de små fjender. Den har blot fået tilføjet en feature hvor den vurderer om den kan ramme med nogle af dens skydevåben på afstand. Hvis den ser at den kan ramme med et skydevåben (spilleren er indenfor eller i den rigtige afstand, samt der kan raycastes direkte hen og ramme spilleren uden at ramme forhindringer) roterer den således at den for peget et skydevåben i spillerens retning.
+Vores boss AI bruger samme pathfinding som de små fjender. Den har blot fået tilføjet en feature hvor den vurderer om den kan ramme med nogle af dens skydevåben på afstand. Hvis den ser at den kan ramme med et skydevåben (spilleren er indenfor eller i den rigtige afstand, samt der kan raycastes direkte hen og ramme spilleren uden at ramme forhindringer) roterer den således at den får peget et skydevåben i spillerens retning. Jo længere tid der bliver brugt på at skyde med skydevåbene jo højere vægt får disse og bossen bliver derfor mere tilbøjelig til at skifte strategi og køre hen til spilleren og forsøge at bruge nærkampsvåben. Denne vægt falder så over tid så hvis man kører væk fra bossen skifter han taktik til igen at skyde efter en.
 
+I det originale design var det meningen at vi ville have implementeret seek and flee, samt en vægtning af våben så bossen kunne se om han var stærkere i nærkamp end dig og ligeledes på afstand. På grund af tidsmangel i projektet blev disse ting dog skåret fra, for da spillet henvender sig til 6-7 årige børn vurderede holdet at der var lille udbytte i at have disse features frem for andre.
 
-
-pathfinding boss med ranged weapons
--ville have lavet seek and flee samt vægt af våben
 
                 + hvilken rolle spiller AI’en i spillet
+Vores små fjender er dem der skaber liv i banerne. Deres formål er til dels at jagte spilleren så der kommer masser af bevægelse i spillet, dels at blive pløjet ned så spilleren får lov at se sine våben udfolde sig og skyde modstandere. Det er disse fjender som vil skabe grundlaget for afprøvningen af AI'en i spillet da det er disse som skaber mulighederne for både alternativt gameplay samt guider spilleren hen mod de hives der spawner fjenderne og derved leder spilleren mod dens mål.
+
+
 melee AI er bare kanonføde så der er lidt underholdning mens man kører rundt i level.
 boss ai er forhindringen til næste level.
