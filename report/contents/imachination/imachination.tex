@@ -14,19 +14,32 @@ Man bygger sin robot ved at drag-n-droppe våben ned på ens robot. Det er ligel
 Man kører ved at holde musen nede og flytte cursoren i den retning man ønsker at bevæge sig. Robotten roterer hele tiden for at holde fronten mod cursoren. Det er muligt at trykke på sig selv og derved affyre sin repulsor. Målet er at positionere sigselv så det er muligt at ødelægge de 'hives' der befinder sig rundt i banerne og derefter at besejre bossen uden at dø.
 
 \subsection{Forløb}
-                + Roller
-kodeslave
-                + generelle forløb (scrum, arbejdsmetoder)
 
-scrum møder hver morgen kl 9
-2delt prototyping
+                + generelle forløb (scrum, arbejdsmetoder)
+Før selve produktionen startede var vi en håndfuld fra gruppen der satte os ned og snakkede om hvilken type spil vi kunne lave og hvilket tema. Vi var en gruppe bestående af vores game director, game designer, project manager, art director, visual artist og en programmør. vi fik sorteret i nogle tidlige brainstorm ideer og fastlagt en mere konkret idé. Den første dag af produktionen blev idéen pitched til hele gruppen. Da den faldt i god jord sparede vi værdifuld tid i preproduktionen da vi allerede få timer efter at have mødtes kunne starte på at producere prototyper.
+
+For programmørenes del startede udviklingen todelt. Da vores spil består af to vidt forskellige dele, bygge delen og RTS delen, og derfor startede vi med at lave prototyper inddelt i 2 grupper. Sammen med en anden programmør blev jeg sat til at prototype en kasse der kunne følge efter musen i et RTS lignende kameraview. De to dele skulle så senere sættes sammen i spillet.
+
+Vores projekt blev kørt med ''scrum'' møder hver morgen hvor hver enkelt fortalte hvad der var blevet  lavet dagen før, og hvad der var planlagt at man skulle bruge dagen på.
+
+
+
 
                 + fokus (hvad har VI kodet)
+fokus startede med AI, men blev til ALT pga. tidsmangel.
 
 movement
+- raycast
+- translatering
+- fysik = force
+--turnspeed
+-- turn UI
+
 prototyping af våben
+-fysik til at kaste dynamit
 merge de 2 verdener
-impl. AI, grid, pathfinding, stlålet fra nettet
+impl. AI, grid, pathfinding, stjålet fra nettet
+AI movement (force i forward vector (går gennem gulvet hvis der er stigninger (løft dem ved at se på højden af terrain)))
 animationer på AI
 animationer og UI på spilleren
 
@@ -42,8 +55,16 @@ simplemove -> fysik
           o AI i vores spil og hvordan de relaterer sig til vores opgave
                 + hvad er der af AI i vores spil
 
-pathfinding melee AI
+Vores små fjender bruger en simpel A* pathfinding algoritme. Der bliver genereret et grid indenfor en boundingbox ved hjælp af raytracing kastet højt oppe fra. Ved alle intersects bliver der lavet en knude. Hvis rayen kolliderer med et object tagged som ''wall'' kan knuden ikke benyttes. Derfor skal alle objecter der ikke kan paseres tagges som ''wall''.
+De finder derefter den korteste vej til spilleren og roterer så deres ''forward''-vektor peger mod den næste knude i stien. De bliver hele tiden flyttet frem i deres ''forward'' retning. Hvis de vender væk fra den vej de gerne vil bliver bevægelseshastigheden sat ned proportionalt med vinklen mellem den ønskede retning og den nuværende retning.
+Når en fjende kommer tæt nok på spilleren stopper den bevægelse mod ''forward'' retningen og roterer blot mod spilleren samtidig med den angriber. 
+
+Vores boss AI bruger samme pathfinding som de små fjender. Den har blot fået tilføjet en feature hvor den vurderer om den kan ramme med nogle af dens skydevåben på afstand. Hvis den ser at den kan ramme med et skydevåben (spilleren er indenfor eller i den rigtige afstand, samt der kan raycastes direkte hen og ramme spilleren uden at ramme forhindringer) roterer den således at den for peget et skydevåben i spillerens retning.
+
+
+
 pathfinding boss med ranged weapons
+-ville have lavet seek and flee samt vægt af våben
 
                 + hvilken rolle spiller AI’en i spillet
 melee AI er bare kanonføde så der er lidt underholdning mens man kører rundt i level.
