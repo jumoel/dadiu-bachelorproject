@@ -9,9 +9,10 @@ Man bygger sin maskine ved at drag-n-droppe våben ned på ens maskine. Det er lig
 
 [Screenshot af RTS]
 Man kører ved at holde musen nede og flytte cursoren i den retning man ønsker at bevæge sig. maskinen roterer hele tiden for at holde fronten mod cursoren. Det er muligt at trykke på sig selv og derved affyre sin repulsor. Målet er at positionere sigselv så det er muligt at ødelægge de 'hives' der befinder sig rundt i banerne og derefter at besejre bossen uden at dø.
+Alle banerne er firkantede ligesom sandkassen og hvis man kigger nøge efter kan man se at mange af ikonerne til våben, fjender og lignende kan findes i startmenuen som viser drengen i sandkassen.
 
 For at underbygge følelser af at det er et barn der forestiller sig hele spillet valgte vi at få børn til at indtale alle lydeffekter i spillet. Det er en håndfuld børn fra det lokale fritidshjem som udover at teste har indtalt skydelyde, eksplosionslyde og meget mere. Det er også et syvårigt barn der har indtalt \textbf{voice-over} stemmen til vores trailer\footnote{http://www.youtube.com/watch?v=WJ-ca5-hhWk} på engelsk selvom han ikke kunne tale engelsk. Manuskriptet er blevet læst højt for ham og han er så blevet optaget mens han forsøger at gentage ordene. Det bidrager til følelsen af at han sidder og leger for sigselv i sin sandkasse.
-
+p
 
 \subsection{Forløb}
 
@@ -36,7 +37,7 @@ Vi havde gentagne gange testet spillet på børn fra det lokale fritidshjem og bør
 Da vores styring minder meget om at have en snor bundet fast i maskinens forende valgte vi at prøve at genskabe denne følelse bedre, da det var det brugeren forventede. Vi valgte at sætte drejehastigheden op ud fra hvor stor vinklen var mellem maskinens fremadretning og den ønskede retning. Hvis man trække maskinen 180 grader modsat af hvor fremadretningen er vil maskinen derfor dreje meget hurtigt og derved dreje på et lille område selvom der køres fremad gennem hele svinget, svarende til at man havde en snor bundet fast i en kasses forende og trak den modsatte vej. 
 
 Det viste sig også at være et problem for voksne at se hvilken del af maskinen der var forenden. På tros af at maskinen altid forsøger at rotere mod musen. Derfor implementerede vi to styringsplaner omkring maskinen som indeholder GUI der skal fortælle spilleren hvordan maskinen vender (det orange lag) samt hvilken retning maskinen forsøger at dreje imod (den grønne pil).
-[Screenshot af GUI planer]
+[muligvis Screenshot af GUI planer]
 
 Jeg lavede også en del prototyping af våbene til maskinen. Det var den oprindelige plan at der skulle laves fem våben til at starte med, og den overskydende til i projektet skulle bruges på at lave flere, sjovere og skørere våben. Det viste sig dog at der ikke var noget overskydende tid så dem fem oprindelige våben blev til de endelige våben. Flammekasteren og saven er lavet med collidere der har en \textbf{on trigger stay} funktion. Så længe en fjende opholder sig inde i collideren tager den skade. Dynamitkasteren og gravearmen bruger begge en sphere collider hhv. fra nedslagspunktet fra dynamitstangen eller skovlen og jo tættere på centrum en anden collider befinder sig jo mere skade og jo mere kraft bliver der tilføjet til fjenden. Dynamitstangen får blot tilføjet en kraft i en retning og exploderer når den rammer en anden collider. Laseren bruger raycasting til at se hvad den rammer.
 
@@ -69,7 +70,7 @@ Bossen spiller to roller. Den ene rolle er udfordringen som du skal overkomme fo
 Den anden rolle bossen spiller er en form for tips og tricks til spilleren. Da der i spillet ikke er en særlig god tutorial har bossen også til formål at vise et eksempel på hvordan man kunne bygge sin maskine.
 
 \subsection{konklussion på produktet}
-Der er en masse ting i udviklingsprocessen der kunne være gjort anderledes og bedre. F.eks. ville det have været godt med lidt mere planlægning i udviklingen blandt programmørerne. Der er også flere ting i spillet som kunne være blevet forbedret. Nogle ting så som styringen var vi hæmmet af de krav der var blevet udstedt fra DADIUs side, men andre ting såsom flere våben, bedre feedback og mere variet gameplay gennem de forskellige baner kunne være opnået ved at have lidt længere tid til at udvikle.
+Der er en masse ting i udviklingsprocessen der kunne være gjort anderledes og bedre. F.eks. ville det have været godt med lidt mere planlægning i udviklingen blandt programmørerne. Der er også flere ting i spillet som kunne være blevet forbedret. Med nogle ting så som styringen var vi hæmmet af de krav der var blevet udstedt fra DADIUs side, men andre ting såsom flere våben, bedre feedback og mere variet gameplay gennem de forskellige baner kunne være opnået ved at have lidt længere tid til at udvikle.
 I sidste ende er det dog et meget fint produkt vi har fået skabt på meget kort tid. Det har potentiale til at blive rigtig godt hvis der udvikles videre på det. Vi fik også meget positiv respons på spillet til evaluering på DADIU og alle tre dommere så potentiale i spillet. Det blev enda nævnt at vi skulle ændre aldersgruppen 30 år op så de også kunne få lov at spille spillet.
 
 \subsection{evaluering af DADIU}
