@@ -84,32 +84,88 @@ På vores produktionshold var vi 14 mennesker. Vi havde:
 \item 5 programmører der stod for at holde styr på og sætte næsten
     alt ind i Unity. Vi skulle sørge for at hele spillet blev sat
     sammen og i nogle tilfælde lave leveldesign som jeg gjorde på
-    labyrinten.
-\item 1 game designer der prøvede på at få spillet til at fungere
+    labyrinten. 
+\item En game designer der prøvede på at få spillet til at fungere
     sammen som en helhed. Han var lidt inde over Unity og forsøgte at
     følge med i alt det vi lavede som programmører.
+\item En game director som stod for at lave de film cut-scenes der er
+  imellem de forskelllige baner. Det var hendes opgave at flette
+  banerne så der var en naturlig progression fra den ene til den
+  næste.
+\item En project manager som først og fremmest skulle sørge for at 
+  holde styr på produktionsforløbet og dernæst at vi alle havde det
+  godt. Han var ude at købe is til os når det var varm og han tømte
+  skraldespande og hjalp endda til med 3d modellering.
+\item Vores Computer Graphics artist (CG) lavede alle de svære 3d modeller
+  til vores spil. Lige fra Teddy og katten til den kegle jeg skulle
+  bruge til at få lys-kegler på katte-øjnene i labyrinten.
+\item Vi havde 2 animatorer som lavede 3d animationerne på vores
+  figurer og hjalp vores visual artist med concept tegninger.
+\item En visual artist som lavede concept tegninger og plakater til
+  vores program.
+\item En art director som stod for at lave textures og bumpmaps til
+  alle de objekter vores CG havde lavet. Han stod også for en del af
+  underholdningen undervejs i forløbet.
+\item En lyd designer som lavede eller fandt al den lyd der blev
+  spillet igennem hele spillet.
 \end{itemize}
--- beskrive forløbet
---- Roller
 
-Programmærer - 5
-art director - 1
-project manager - 1
-game designer - 1
-animator - 2
-comp graphics artist - 1
-visual designer - 1
-sound designer - 1
-game director - 1
+\subsection{Mine arbejdsopgaver}
 
+Jeg stod først og fremmest for KI delen af vores spil. Jeg fik tildelt
+opgaven som KI mand fra starten af da jeg ville bruge min viden til
+dette bachelor projekt. Problemet blev til sidst at vi havde svært ved
+at få noget som helst KI passet ind i spillet. Det var blevet så stort
+at der var mange opgaver for os alle sammen hele tiden og jeg fik
+dårligt nok lov til at lave noget KI programmering. 
 
+I stedet blev jeg sat på at lave level design til vores labyrint. Jeg
+lavede waypoints til de øjne der følger en rundt, jeg skrev den del
+der gør at de ved hvornår de kan se Teddy. Jeg fik modeleret næsten
+hele banen til med kasser i stedet for vægge så det kunne ligne noget
+man havde i kælderen. Jeg lavede game menu og tilpassede GUI
+elementer. Jeg fik sat forskellige lyde til at afspille når man ramte
+siderne i vaskemaskinen. Jeg satte alarm lyde på katte øjnene få man
+fik en ide om at man var i fare hvis man kom for tæt på de lyskegler
+de lavede.
 
+Det der er i spillet af KI nu er de sæt øjne der er rundt omkring i
+labyrint banen. De har nogle bestemte waypoints som de følger rundt på
+gulvet for at dække et defineret areal. Disse katteøjne har et field
+of vision defineret som en vinkel ud fra hvor de ser. Teddy kan kun
+blive opdaget hvis han er inden for dette field of vision. Hver fixed
+update bliver der sendt et raycast ud fra der hvor hvert øje
+starter. Når der bliver brugt fixed update sker dette ikke i hvert
+frame men med en bestemt interval. Dette betyder at det koster det
+samme i performance om man har mange eller få frames per second. Dette
+raycast bliver sendt mod Teddy, hvis der ikke er noget der står i
+vejen for at han bliver ramt, så er det muligt at han kan blive set af
+øjnene. Så tjekkes vinklen mellem det raycast og Teddy. Hvis den er
+indenfor synsfeltet begynder alarmen at køre og man har 0.5 sekunder
+til at nå ud af øjets synsfelt igen.
 
---- generelle forlæb (scrum, arbejdsmetoder)
+Øje sættene er kun tændt et ad gangen. Kun det sæt øjne er tændt som er
+tættest på Teddy i forholdt til den korteste vej han skal gå for at
+møde dem. Dette bliver fundet udfra nogle pathwaypoints som ligger ved
+hver skillevej eller sving i labyrinten. Jeg finder ud af hvilket
+punkt Teddy er tættest på og det kan så give beskeden direkte videre
+til det øje der er tættest på punktet.
 
-forsægt scrum
-list med todo ``notes''
-vores colead havde mest overblik
+Det var planen at få implementeret flocking på de kakerlakker der nu
+bare går rundt i banen. De skulle så søge hen mod Teddy når han kom
+indenfor en vis radius af dem. Jo flere kakerlakker der flocker rundt
+om Teddy jo sværere vil det være at bevæge sig rundt. Samtidig skulle
+katteøjnene begynde at følge hurtigere og hurtigere efter
+kakerlakkernes midtpunkt efterhånden som flere af dem blev samlet på
+vejen. Dette skulle gøre banen langt sværerere at komme igennem men
+samtidig give mulighed for alternativt gameplay. Vi ville implementere
+det så man havde en mulighed for at få kakerlakkerne til at gå væk
+igen enten ved at træde på dem eller lave en stampefunktion hvis man
+klikker direkte på Teddy. Så skulle kakerlakkerne løbe væk i et par
+sekunder og hvis man selv kommer udenfor den radius hvor de finder en
+i kan man spille videre uforstyrret indtil man løber ind i flere
+kakerlakker. 
+
 
 
 --- fokus (hvad har VI kodet)
