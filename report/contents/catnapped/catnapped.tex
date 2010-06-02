@@ -129,6 +129,48 @@ siderne i vaskemaskinen. Jeg satte alarm lyde på katte øjnene få man
 fik en ide om at man var i fare hvis man kom for tæt på de lyskegler
 de lavede.
 
+
+
+\subsection{Brugertest}
+
+Vi testede vores spil på børn mange gange i udviklingsforløbet, de
+havde aldrig problemer med at styre spillet. Nogen af dem var mere
+skarpe end andre og de kunne hjælpe hinanden med at gennemføre
+spillene. De første problemer vi havde med vores styremåder kom da det
+var voksne mennesker der skulle igennem banerne. De havde langt
+sværere ved at lære noget nyt og se det smarte i vores
+styringsmetoder. Børnene elskede at spille spillet hver gang, men det
+ændrede sig lidt med hvad de synes var det sjoveste. På et tidspunkt
+var der en fejl i spillet et sted så man kunne stå og se ud af banen,
+det var der selvfølgelig en af børnene der opdagede og så stod han der
+og kiggede ud i 5 min. 
+
+\subsection{Problemer og udfordringer}
+
+En af de største problemer som vi fandt ved vores brugertest var at
+det var svært at finde rundt i den labyrint jeg havde lavet. Vi
+startede med en kameraføring der hele tiden holdt kameraet bagved
+Teddy. Problemet ved at gøre det på denne måde er at man meget let
+mister orienteringen hvis man laver nogle få sving i banen. Jeg kunne
+selv fare vild i det level design jeg havde lavet da kameraet stod
+sådan. Vi fandt ud af at vi var nødt til at få kameraet til at være
+mere fast så man bedre kunne følge med i hvilken vej man vendte. Det
+blev først til at kameraet roterede 90 grader ad gangen, men heller
+ikke dette var nok til at man kunne holde orienteringen. Banen så for
+anderledes ud fra de forskellige vinkler. Vi endte med at få kameraet
+til hele tiden at være på samme position i forhold til hele
+labyrinten. Problemet er så her at man let får kameraet til at komme
+om bagved de kasser der ligger i banen, så man ikke kan se Teddy. Vi
+forsøgte at løse dette ved at finde den rigtige højde for kameraet,
+både så man fik fornemmelsen af at kunne se toppen af kasserne men
+også så man ikke kom for langt fra Teddy og det virkede
+unaturligt. Til sidst fandt vi ud af at vi burde have styret kameraet
+med triggers igennem hele banen for at få det til at opføre sig
+optimalt, men det havde vi ikke tid til at implementere. Som det blev
+er det kun et problem at se Teddy et enkelt sted i labyrinten.
+
+\subsection{KI i spillet}
+
 Det der er i spillet af KI nu er de sæt øjne der er rundt omkring i
 labyrint banen. De har nogle bestemte waypoints som de følger rundt på
 gulvet for at dække et defineret areal. Disse katteøjne har et field
@@ -150,7 +192,15 @@ møde dem. Dette bliver fundet udfra nogle pathwaypoints som ligger ved
 hver skillevej eller sving i labyrinten. Jeg finder ud af hvilket
 punkt Teddy er tættest på og det kan så give beskeden direkte videre
 til det øje der er tættest på punktet. De tætteste øjne bliver fundet
-i steps. Efter banen lige er loaded ved alle
+i steps. Enhver scene har 2 load funktioner,  ``Awake()'' og
+``Start()''. De bliver kørt efter hinanden, derefter begynder
+``Update()'' at køre hvert frame. Som jeg implementerede shortest path
+nu kan hvert pathwaypoint maksimalt søge gennem 2 andre pathwaypoints
+som de kan se før der skal være et øje. Det at de kan se hinanden er
+defineret på om der er nogen væg-kasser imellem eller ej, hvis der
+ikke er kan de se hinanden. Dette virker upraktisk men det betyder
+samtidig at hele shortest path finding køres i $O(n)$ tid hvor $n$ er
+antallet af pathwaypoints. Algoritmen bliver samtidig kun kørt 1 gang.
 
 Det var planen at få implementeret flocking på de kakerlakker der nu
 bare går rundt i banen. De skulle så søge hen mod Teddy når han kom
@@ -165,17 +215,7 @@ igen enten ved at træde på dem eller lave en stampefunktion hvis man
 klikker direkte på Teddy. Så skulle kakerlakkerne løbe væk i et par
 sekunder og hvis man selv kommer udenfor den radius hvor de finder en
 i kan man spille videre uforstyrret indtil man løber ind i flere
-kakerlakker. 
-
-
-
---- fokus (hvad har VI kodet)
-
-stær for AI delen
-level design
-Game level selection tweaking
-Cockroack movement
-lydsætning
+kakerlakker.  
 
 --- hvad er vi blevet nædt til at lave
 --- problemer og udfordringer
