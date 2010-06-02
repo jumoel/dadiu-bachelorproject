@@ -1,0 +1,129 @@
+\section{Sophie's Dream Leap}
+\label{sec:sophies-dream-leap}
+
+Spillet \emph{Sophie's Dream Leap} er et 3D-platform spil. Spilleren
+indtager rollen som den seks-årige pige Sophie. Sophie er, bortset fra
+tilstedeværelsen af hendes spøgelsesbror, alene hjemme. Spillet
+starter med at Sophie følger efter broderen op på spisestuebordet,
+hvorefter jorden bliver til ætsende syre.
+
+Instruktøren i gruppen ville lave et spil, der efterlod spilleren
+med en oplevelse. Han ville undgå at vi lavede et spil, hvor det
+primære formål fx var at samle mønter op eller få den hurtigste tid.
+
+\subsection{Forløb}
+\label{sec:dream-forlob}
+
+Spilidéen blev fundet ved hjælp af kollektiv brainstorming over den
+første halvanden dag i forløbet. Vi havde tre primære idéer, hvoraf
+``Jorden er giftig''-temaet blev valgt som vores foretrukne om
+tirsdagen.
+
+Efterfølgende udviklede vi en række forskellige prototyper, for at få
+fastlagt hvordan spillet skulle styres. Prototyperne variede fra
+isometrisk perspektiv hvor man trykkede et sted og spilfiguren
+efterfølgende gik derhen til tredjepersonsperspektiv hvor man bevægede
+sig ved at holde venstre musetast nede og hoppede ved
+dobbeltklik. Ingen af disse fungerede dog særlig godt, og derfor
+besluttede vi os for en helt tredje styringsprototype, hvor
+spilfiguren altid bevæger sig i musens retning. Hastigheden hvormed
+figuren bevægede sig var afhængig af afstanden til musen. Trykkede man
+på højre musetast hoppede figuren.
+
+\subsubsection{Kunstig intelligens}
+\label{sec:dream-kunstig-intelligens}
+
+Det blev hurtigt i forløbet besluttet, at vi kunne udnytte DADIUs krav om kunstig
+intelligens i spillet på en god måde til at have en bror, der kunne
+fungere som vejleder i spillet. Broderen skulle gå foran spilleren og
+vise en vej igennem banerne. Samtidig skulle broderen fungere som
+gemme-punkt visse steder i banerne. Den kunstige intelligens i
+\emph{Sophie's Dream Leap} består derfor primært af en implementering
+af \emph{pathfinding}-algoritmen \emph{A*}. Algoritmen er dog
+modificeret til også at tillade hop rundt i banen, så broderen ikke
+behøvede en fast vej fra start til slut.
+
+På grund af den valgte algoritme, blev der sat nogle begrænsninger for
+de baner, vi kunne have i spillet: Vi tillod ikke gangbare overflader,
+der lå lige over hinanden. Dvs. for ethvert $(x,~z)$-koordinat, måtte
+der kun være et gangbart punkt. Var der alligevel flere, ville den
+kunstige intelligens ikke være opmærksom på andre overflader end den,
+der stod øverst i Unitys scenehierarki.
+
+For at den kunstige intelligens ikke skulle tage meget svære eller
+obskure veje igennem banerne blev hop gjort dyre i algoritmens
+vægtfunktion.
+
+Idet miljøerne spilleren bevæger sig rundt i er dynamiske (objekter
+kan flyttes, væltes, destrueres o.l.) implementerede vi også
+funktionalitet i den kunstige intelligens, så den blev opmærksom på
+sine omgivelser. Hvis den kunstige intelligens stødte på en
+forhindring på sin beregnede vej, blev der beregnet en ny vej til det
+ønskede mål.
+
+Da den kunstige intelligens brugte et ret fintmasket koordinatsystem
+til at indele banen i, fik vi problemer med hakkende bevægelser hvis
+hele stien frem til mål ikke var kendt på forhånd. Det betød at vi lod
+den kunstige intelligens kigge på det punkt den overvejede at inddrage
+i sin vej og se om det var gangbart. Hvis det ikke var tilfældet
+prøvede den at finde en ny vej med det samme. Det betød at vi mistede
+den meget menneskelige egenskab, at KI'en kunne gå forkerte veje i
+første omgang, men til gengæld undgik vi at skulle bruge en masse tid
+på at udglatte bevægelserne langs vejen for at undgå hak o.l. de mange
+gange vejen ellers skulle være genberegnet undervejs på turen igennem
+banen. Fordi vores baner var så forholdsvis små, var det ikke synligt
+på spillets ydelse når den kunstige intelligens genberegnede sine veje.
+
+For dels at hjælpe den kunstige intelligens igennem svære områder,
+hvis vi skulle støde på sådan nogen undervejs, og dels at kunne
+forbedre gameplayet, implementerede vi såkaldte \emph{triggers} der
+kunne blive aktiveret når enten spilleren eller den kunstige
+intelligens passerede igennem eller hvis de begge var til stede. Det
+brugte vi til at aktivere den kunstige intelligens når spilleren havde
+bevæget sig lidt ind i en bane, samt til at få den kunstige
+intelligens til at agere gemmepunkt og vente på spilleren indtil hun
+nåede frem.
+
+For at gøre den kunstige intelligens mere resistent over for
+fejlberegninger, uventede forhindringer o.l., lavede vi
+funktionalitet, så KI'en blev teleporteret til det næste
+koordinatpunkt den ville have besøgt på sin vej, hvis den sad fast
+eller kom for langt væk. Det gjorde at vi kunne tillade os at have
+nogle upolerede områder, hvor den kunstige intelligens ikke opførte
+sig optimalt. Endvidere blev den kunstige intelligens portrætteret som
+et spøgelse, hvilket igen tillod os lidt unormal opførsel uden at det
+blev akavet.
+
+Idet spillerens hop og generelle styring har meget lidt med
+virkelighedens fysik at gøre, besluttede vi os for efter mange
+problemer også at snyde med den kunstige intelligens'
+bevægelse. Hop bliver derfor lavet helt uden om det indbyggede
+fysiksystem, og den kunstige intelligens bliver blot flyttet langs en
+bezier-kurve som er lavet mellem start- og slut-punktet for hoppet.
+
+Spillet tredje bane er desuden meget virkelighedsfjern, så der
+besluttede vi at lade leveldesigneren få frit spil og blot lade den
+kunstige intelligens teleportere rundt mellem de punkter vi ønskede
+han skulle være på.
+
+\subsubsection{Udviklingsmetode}
+\label{sec:udviklingsmetodik}
+
+Vores projektleder ville gerne have at vi benyttede os af
+\emph{SCRUM}-metoden i vores udvikling. Det vil sige, at vi hver
+morgen startede med et stående møde, hvor alle på holdet sagde hvad de
+havde lavet dagen før og hvad de skulle lave den dag. På den måde
+havde alle et indblik i hvordan udviklingen af spillet gik.
+
+Endvidere blev hele forløbet inddelt i en række \emph{sprints} á tre
+eller fire dage. Hver deltager vurderede så i starten af en
+\emph{sprint} hvor meget arbejde de regnede med at kunne få for hånden
+inden for perioden. Det medførte at alle som regel vidste, hvad de
+skulle tage sig til, samt at man ikke blev udsat for en
+altoverskyggende, uoverkommelig opgave, men blot små opgaver, der jo
+maksimalt varede fire dage.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../report"
+%%% End: 

@@ -8,3 +8,4 @@ auto/*
 *.toc
 *.aux
 *.pdf
+*.synctex.gz
