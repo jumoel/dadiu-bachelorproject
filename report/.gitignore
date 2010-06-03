@@ -1,0 +1,13 @@
+auto/
+auto/*
+*/*.aux
+*/*/*.aux
+*/*/#*#
+*.log
+*.lof
+*.toc
+*.aux
+*.pdf
+*.synctex.gz
+*.bbl
+*.blg

@@ -1,0 +1,259 @@
+\section{Sophie's Dream Leap}
+\label{sec:sophies-dream-leap}
+
+Spillet \emph{Sophie's Dream Leap} er et 3D-platform spil. Spilleren
+indtager rollen som den seks-årige pige Sophie. Sophie er, bortset fra
+tilstedeværelsen af hendes spøgelsesbror, alene hjemme. Spillet
+starter med at Sophie følger efter broderen op på spisestuebordet,
+hvorefter jorden bliver til ætsende syre.
+
+Instruktøren i gruppen ville lave et spil, der efterlod spilleren
+med en oplevelse. Han ville undgå at vi lavede et spil, hvor det
+primære formål fx var at samle mønter op eller få den hurtigste tid.
+
+\subsection{Forløb}
+\label{sec:dream-forlob}
+
+Spilidéen blev fundet ved hjælp af kollektiv brainstorming over den
+første halvanden dag i forløbet. Vi havde tre primære idéer, hvoraf
+``Jorden er giftig''-temaet blev valgt som vores foretrukne om
+tirsdagen.
+
+Efterfølgende udviklede vi en række forskellige prototyper, for at få
+fastlagt hvordan spillet skulle styres. Prototyperne variede fra
+isometrisk perspektiv hvor man trykkede et sted og spilfiguren
+efterfølgende gik derhen til tredjepersonsperspektiv hvor man bevægede
+sig ved at holde venstre musetast nede og hoppede ved
+dobbeltklik. Ingen af disse fungerede dog særlig godt, og derfor
+besluttede vi os for en helt tredje styringsprototype, hvor
+spilfiguren altid bevæger sig i musens retning. Hastigheden hvormed
+figuren bevægede sig var afhængig af afstanden til musen. Trykkede man
+på højre musetast hoppede figuren.
+
+\subsubsection{Udviklingsmetode}
+\label{sec:udviklingsmetodik}
+
+Vores projektleder ville gerne have at vi benyttede os af
+\emph{SCRUM}-metoden i vores udvikling. Det vil sige, at vi hver
+morgen startede med et stående møde, hvor alle på holdet sagde hvad de
+havde lavet dagen før og hvad de skulle lave den dag. På den måde
+havde alle et indblik i hvordan udviklingen af spillet gik.
+
+Endvidere blev hele forløbet inddelt i en række \emph{sprints} á tre
+eller fire dage. Hver deltager vurderede så i starten af en
+\emph{sprint} hvor meget arbejde de regnede med at kunne få for hånden
+inden for perioden. Det medførte at alle som regel vidste, hvad de
+skulle tage sig til, samt at man ikke blev udsat for en
+altoverskyggende, uoverkommelig opgave, men blot små opgaver, der jo
+maksimalt varede fire dage.
+
+Det viste sig at \emph{SCRUM} medførte den ulempe, at vores kildekode
+blev meget rodet med tiden, da der blev tilføjet eller ændret
+\emph{features} i hver \emph{sprint}, som blot byggede oven på gammel
+funktionalitet. Problemet blev yderligere forværret af, at vi ikke
+havde tid nok i forløbet til at sætte os ned og rydde op. Fokus lå på
+at udvide og forbedre spillet, hvilket desværre blev sværere og
+sværere pga. kodens lave kvalitet. Når kildekoden blev mere kringlet
+medførte det også at det stort set kun var den oprindelige programmør
+der til slut kunne gennemskue hvor ændringer skulle foretages. Det
+gjorde at de forskellige programmører fik meget skarpt opdelte roller:
+lyd, animation, kunstig intelligens, osv.
+
+\subsubsection{Rolle i produktionen}
+\label{sec:rolle-i-produktionen}
+
+Min rolle i produktionen var blandet. Det primære fokus lå på at
+implementere den kunstige intelligens der skulle drive broderen i
+spillet. På produktionen var der dog reelt kun 3,5 programmør, hvilket
+betød at jeg var nødt til også at bruge en del tid på forefaldende
+programmerings- og implementeringsopgaver. Blandt disse kan nævnes:
+
+\begin{itemize}
+\item \emph{Debugging} og arbejde med vores animationssystem
+\item Implementering af websiden \href{http://www.dream-leap.com}.
+\item Implementering af funktionalitet til vores lyddesigner
+\item Komprimering og indsætning af \emph{assets} i vores spil
+\item Finpudsning af baner ift. den kunstige intelligens' opførsel
+\item Implementering af ``rulletekster''.
+\end{itemize}
+
+Min arbejdsindsats i de forskellige områder har været dikteret af,
+hvad der blev vurderet som værende vigtigst at implementere i en
+\emph{sprint}.
+
+\subsubsection{Afprøvning af spillet}
+\label{sec:afpr-af-dreamleap}
+
+Én gang om ugen blev vores spil afprøvet på en gruppe bestående af et
+par børn i 6-7-års alderen. Børnenes færd i spillet blev filmet,
+samtidig med at vores \emph{game designer} og \emph{project manager}
+observerede og tog noter. Disse noter var grundlaget for, hvilke
+ændringer der blev foretaget i banedesign såvel som styremetode.
+
+Desuden brugte vi programmører en del tid på at spilteste undervejs i
+forløbet. Dette var dog mest for at finde fejl, mangler og mærkelige
+ting, idet vi allerede efter kort tid var blevet så vant til vores
+spil, at det var alt for let for os og vi dermed ikke kunne bruges til
+at finpudse sværhedsgrad o.l.
+
+
+\subsection{Kunstig intelligens}
+\label{sec:dream-kunstig-intelligens}
+
+Det blev hurtigt i forløbet besluttet, at vi kunne udnytte DADIUs krav
+om kunstig intelligens i spillet på en god måde til at have en bror,
+der kunne fungere som vejleder i spillet. Broderen skulle gå foran
+spilleren og vise en vej igennem banerne. Samtidig skulle broderen
+fungere som gemme-punkt visse steder i banerne. Den kunstige
+intelligens i \emph{Sophie's Dream Leap} består derfor primært af en
+implementering af \emph{pathfinding}-algoritmen \emph{A*}. Algoritmen
+er dog modificeret til også at tillade hop rundt i banen, så broderen
+ikke behøvede en fast vej fra start til slut.
+
+På grund af den valgte algoritme, blev der sat nogle begrænsninger for
+de baner, vi kunne have i spillet: Vi tillod ikke gangbare overflader,
+der lå lige over hinanden. Dvs. for ethvert $(x,~z)$-koordinat, måtte
+der kun være et gangbart punkt. Var der alligevel flere, ville den
+kunstige intelligens ikke være opmærksom på andre overflader end den,
+der stod øverst i Unitys scenehierarki.
+
+For at den kunstige intelligens ikke skulle tage meget svære eller
+obskure veje igennem banerne blev hop gjort dyre i algoritmens
+vægtfunktion.
+
+Idet miljøerne spilleren bevæger sig rundt i er dynamiske (objekter
+kan flyttes, væltes, destrueres o.l.) implementerede vi også
+funktionalitet i den kunstige intelligens, så den blev opmærksom på
+sine omgivelser. Hvis den kunstige intelligens stødte på en
+forhindring på sin beregnede vej, blev der beregnet en ny vej til det
+ønskede mål.
+
+Da den kunstige intelligens brugte et ret fintmasket koordinatsystem
+til at indele banen i, fik vi problemer med hakkende bevægelser hvis
+hele stien frem til mål ikke var kendt på forhånd. Det betød at vi lod
+den kunstige intelligens kigge på det punkt den overvejede at inddrage
+i sin vej og se om det var gangbart. Hvis det ikke var tilfældet
+prøvede den at finde en ny vej med det samme. Det betød at vi mistede
+den meget menneskelige egenskab, at KI'en kunne gå forkerte veje i
+første omgang, men til gengæld undgik vi at skulle bruge en masse tid
+på at udglatte bevægelserne langs vejen for at undgå hak o.l. de mange
+gange vejen ellers skulle være genberegnet undervejs på turen igennem
+banen. Fordi vores baner var så forholdsvis små, var det ikke synligt
+på spillets ydelse når den kunstige intelligens genberegnede sine veje.
+
+For dels at hjælpe den kunstige intelligens igennem svære områder,
+hvis vi skulle støde på sådan nogen undervejs, og dels at kunne
+forbedre gameplayet, implementerede vi såkaldte \emph{triggers} der
+kunne blive aktiveret når enten spilleren eller den kunstige
+intelligens passerede igennem eller hvis de begge var til stede. Det
+brugte vi til at aktivere den kunstige intelligens når spilleren havde
+bevæget sig lidt ind i en bane, samt til at få den kunstige
+intelligens til at agere gemmepunkt og vente på spilleren indtil hun
+nåede frem.
+
+For at gøre den kunstige intelligens mere resistent over for
+fejlberegninger, uventede forhindringer o.l., lavede vi
+funktionalitet, så KI'en blev teleporteret til det næste
+koordinatpunkt den ville have besøgt på sin vej, hvis den sad fast
+eller kom for langt væk. Det gjorde at vi kunne tillade os at have
+nogle upolerede områder, hvor den kunstige intelligens ikke opførte
+sig optimalt. Endvidere blev den kunstige intelligens portrætteret som
+et spøgelse, hvilket igen tillod os lidt unormal opførsel uden at det
+blev akavet.
+
+Idet spillerens hop og generelle styring har meget lidt med
+virkelighedens fysik at gøre, besluttede vi os for efter mange
+problemer også at snyde med den kunstige intelligens'
+bevægelse. Hop bliver derfor lavet helt uden om det indbyggede
+fysiksystem, og den kunstige intelligens bliver blot flyttet langs en
+bezier-kurve som er lavet mellem start- og slut-punktet for hoppet.
+
+Havde vi haft mere tid ville vi gerne have implementeret noget
+\emph{path smoothing}, så broderen gik mere flydende og uden hak når
+han skiftede retning.
+
+Spillet tredje bane var desuden meget virkelighedsfjern, så der
+besluttede vi at leveldesigneren skulle have frit spil. Derfor lod vi
+den kunstige intelligens teleportere rundt mellem de punkter vi
+ønskede han skulle være på, så vi ikke behøvede tage højde for om det
+nu også var muligt for KI'en at gå ordentligt.
+
+Udover den primære kunstige intelligens i form af broderen, blev der
+også udviklet fjender, der skulle stå i vejen for spillerens
+fremgang. Fjenderne vandrede rundt på en platform og vendte om i en
+vilkårlig retning, hvis de fandt ud af at de var ved en kant. Når
+fjenderne så spilleren, begyndte de at opbygge vrede hvorefter de løb
+imod spilleren og forsøgte at skubbe hende udover. Vi nåede desværre
+ikke at indbygge funktionalitet i fjenderne, så de elegant kunne
+undvige kanter. Vi ville også gerne have inkluderet mulighed for at
+fjenderne forsøgte at forudsige hvor spilleren ville være lidt ude i
+fremtiden og så sigte efter det punkt i deres fremløb.
+
+\subsection{Problemer og udfordringer undervejs}
+\label{sec:problemer-undervejs}
+
+Vi havde en række problemer og udfordringer undervejs i
+produktionen. Det viste sig fx at være et ret stort problem, at
+programmørerne var de eneste, der hurtigt fik sat sig ind i brugen af
+Unity. Det medførte at en del tid i starten af produktionen blev brugt
+på support af nogle af de andre deltagere.
+
+Desuden stødte vi ind i en række problemer med Unitys lyssætning,
+skygger, fysiksystem, lyd o.l., der var forårsaget af, at vi ikke
+benyttede en normal skala i vores spil. Fx er spisebordet i vores
+første bane i Unity ti meter bredt og ti meter langt, og vores
+hovedpersoner er omkring tre og seks meter høje. Det gjorde at fx 
+distancen en lyd skulle kunne høres og hvilken kvalitet skygger der
+skulle tegnes blev forskruede, idet Unity troede vores baner var langt
+større end de i virkeligheden skulle være.
+
+Et af vores største problemer var imidlertid at vi allerede efter to
+dage mistede en programmør. Desuden var vores \emph{leap}-programmør
+nødsaget til at følge kurser og tage til eksamener på sit studie,
+hvilket resulterede i, at vi blot var tre programmører til stede det
+meste af tiden.
+
+I begyndelsen af processen valgte vi at benytte os af \emph{Locomotion
+  System}-biblioteket \cite{locomotion} til Unity, for at få
+realistiske bevægelser for vores figurer i spillet. Det medførte dog
+en række problemer, idet der var krav til animationerne og
+programkoden vi kørte, for at få systemet til at fungere korrekt. Det
+betød at vi brugte en masse tid i løbet af projektet på at finde og
+rette fejl og implementere funktionalitet der tillod os at benytte
+\emph{Locomotion}-systemet. Selvom det krævede meget arbejde, var
+slutresultatet dog det værd, idet vores ganganimationer blev meget
+realistiske. Systemet tillod også at vores figurer bevægede sig med variable
+hastigheder uden at animationerne så underlige ud eller at benene
+``skøjtede'' på underlaget.
+
+Baseret på resultaterne af vores brugertest brugte vi også utrolig
+lang tid på at lave, forbedre, udvide og ændre vores system til
+styring af spilleren, idet vores styring de første test var alt for
+svær at håndtere. Skulle jeg lave noget om, ville det være at afholde
+flere brugertest, især i starten af forløbet. Dermed tror jeg at vi
+kunne have fundet flere fejl og mangler ved styremåden
+tidligere. Havde vi gjort det, kunne vi forhåbentlig have fundet de
+rigtige parametre langt tidligere, programkoden kunne være blevet
+``låst'' og programmørtiden brugt på andre, mere presserende ting, i
+slutningen af forløbet. Derudover tror jeg også det ville have været
+en fordel, hvis der var en brugertest efter hver \emph{sprint} og ikke
+blot efter hver uge, der jo bestod of to \emph{sprints}. Jeg tror
+også, at vi kunne have haft gavn af at have en programmør med ude til
+testene, da vi var mere bekendte med ømme punkter, der måske skulle
+have mere opmærksomhed og derfor i særdeleshed ville have haft godt at
+af blive testet.
+
+Naturligvis voldte den kunstige intelligens også problemer
+undervejs. Mange af problemer skyldtes, at instruktørens og \emph{game
+  designerens} vision for den kunstige intelligens var enormt
+ambitiøse. Desuden ændredes planerne for den kunstige intelligens
+undervejs, hvilket naturligvis var et problem idet udviklingen så
+skulle skifte kurs. Havde målet var klart (og endeligt) tidligere i
+processen, ville vi formentlig kunne have lavet en bedre løsning, idet
+vi ikke havde behøvet fokuseret på generelle tilfælde, men kun på
+vores specifikke scenarier.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../report"
+%%% End: 
