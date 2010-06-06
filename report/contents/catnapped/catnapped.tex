@@ -1,0 +1,276 @@
+\section{Catnapped: The Bear Affair}
+\label{Catnapped}
+
+\subsection{Spillet}
+
+Catnapped er en historie fortalt gennem et spil. Det hele er baseret
+på at der bor en kat og en teddy bamse i det samme hus, de to
+rivaliserer om at få kærligheden af drengen der bor der.
+
+\paragraph{Historien} Det begynder med at katten fanger vores
+hovedperson Teddy og putter ham i vaskemaskinen. Nu gælder det om som
+spiller at få styret Teddy ud af vaskemaskinen. Han skal derefter
+balancere over de ødelagte brædder i kældergulvet, holde sig til en
+ventilator for at blive tør og så forsøge at finde vej ud af
+kælderen. Til sidst skal man kæmpe mod katten. Hvis man vinder ses en
+sekvens af katten der flyver på hovedet ned i en malerbøtte hvor den
+bliver fundet af drengen. Den bliver nu vasket i stedet for Teddy og
+han kan sidde og blæse sæbeboble med sin pibe for sig selv på drengens
+værelse.
+
+\paragraph{Vaskemaskinen} I vaskemaskinen bliver man langsomt hvirvlet
+rundt mellem sokkerne derinde. Man skal forsøge at kaste den lasso
+ring man har på ryggen hen på et håndtag inde i vaskemaskinen der kan
+åbne for den. Dette er den første bane og den er meget let.
+
+\paragraph{Balance} I balance banen gælder det om at passere henover
+de brækkede gulvbrædder uden at falde ned fra planken man går på. Her
+har vi en noget random force på Teddy engang imellem så der er chance
+for at han kan begynde at falde til siderne. Det skal forestille at
+Teddy stadig er våd her og det derfor er svært at styre ham.
+
+\paragraph{Ventilatoren} Ventilatoren står højt oppe og der vises et
+lille film klip hvor Teddy kaster sin ring op og får fat i den. Nu
+hænger man foran ventilatoren og prøver på at holde sig i midten af
+den for at hive sig tættere på. Dette er både for at blive tør og for
+at kunne komme til at slukke for den så Teddy kan komme ned igen og
+videre. Vi har en lille ``exploration'' bane efter dette, bare for at
+man kan prøve at skubbe rundt på dåser og andre ting. Her skal man
+løbe henover kasserne og ud af en skakt som leder til næste bane.
+
+\paragraph{Labyrinten} Jeg har selv designet denne labyrint. Den blev
+åbenbart sværere end jeg selv havde troet. Det gælder om at finde vej
+ud af kælderen, der er 3 blindgyder og 2 steder hvor man kan gå rundt
+i en ring. Samtidig ligger der tændstiksæsker på gulvet som man kan
+skubbe rundt på eller gemme sig bag ved. Der er nogle ``watchtowers''
+som skal forestille at katten kigger efter Teddy nede på gulvet. Der
+går nogle kakerlakker rundt nede på gulvet som også kan skubbe til
+tændstiksæskerne.
+
+\paragraph{Boss Banen} Her ser man katten rigtigt i spillet for første
+gang. Den står oppe på en skammel med 4 ben. Det gælder om at kaste
+sin ring så den rammer benene på skamlen. Benene skal rammes 6 gange
+og vi har en slags ``health bar'' der viser hvor mange gange man skal
+ramme benene før katten falder af skamlen. Under kampen kigger katten
+med øjnene som i labyrinten. Her forsøger den at være smart ved at se
+efter den kasse man står bagved. Dette er dog stadig scripted og ikke
+rigtig KI.
+
+\subsection{Produktionsforløb}
+
+Vi brugte første dag i produktionsforløbet på at lære hinanden at
+kende og diskutere og finde ud af hvilke muligheder vi havde for
+styring af spillet. Det blev til 4 forskellige styremetoder. Jeg selv
+og vores lead programmer var de eneste der ikke havde arbejdet i
+Unity3D før. Jeg fik til opgave næste dag at lave en styremåde til
+Teddy som gik ud på at man havde mouselook og rykkede sig fremad når
+man holdt venstre museknap nede. Dette var den mest simple styremåde,
+vi fandt på andre, både at man skulle bevæge sig rundt som om man
+havde vægt på musen, så hvis man holdt den til højre for Teddy ville
+han tilte til højre mere og mere og gå hurtigere og hurtigere indtil
+han faldt til siden. Dette princip blev aldrig rigtig brugt, men det
+fik og til at finde på de første ideer med spillet. Hvis man skulle gå
+rundt i et hus som en bamse der havde svært ved at gå, og man skulle
+samle ting op og bære dem hen til sin æske uden at falde med
+dem. Denne ide blev dog aldrig til noget. Vi havde ellers overvejet at
+Teddy kunne være ved at samle ting i huset til at lave sit eget lille
+band så man skulle spille på tingene han samlede op for at finde ud af
+om det var noget han kunne bruge i sin konstruktion af et
+multiinstrument. 
+
+På tredjedage blev vores endelige ide lagt fast og vi begyndte
+virkelig at få fart på. Vi skulle nå at lave en masse prototyper som
+vores test gruppe børn kunne afprøve allerede en uge senere.
+
+For os programmører var der hele tiden noget at se til. Vi havde mange
+baner planlagt lige fra starten af og det blev vores job at holde styr
+på dem alle sammen. Sætte dem sammen inde i Unity og sørge for at de
+kunne spilles. Vi arbejdede på en scene (bane) hver for det meste af
+tiden. Jeg havde mest arbejde på labyrinten.
+
+Vi har haft møder hver morgen på vores produktion. Det har mest været
+opdaterings møder om hvad der er sket den foregående dag. Vi havde
+opsamling af hvilke nye arbejdsopgaver vi kunne finde på så alle havde
+rig mulighed for at finde noget at gå igang med hele resten af dagen.
+
+\paragraph{Holdmedlemmer}
+
+På vores produktionshold var vi 14 mennesker. Vi havde:
+
+\begin{itemize}
+\item 5 programmører der stod for at holde styr på og sætte næsten alt
+ind i Unity. Vi skulle sørge for at hele spillet blev sat sammen og i
+nogle tilfælde lave leveldesign som jeg gjorde på labyrinten.
+\item En game designer der prøvede på at få spillet til at fungere
+sammen som en helhed. Han var lidt inde over Unity og forsøgte at
+følge med i alt det vi lavede som programmører.
+\item En game director som stod for at lave de film cut-scenes der er
+imellem de forskelllige baner. Det var hendes opgave at flette banerne
+så der var en naturlig progression fra den ene til den næste.
+\item En project manager som først og fremmest skulle sørge for at
+holde styr på produktionsforløbet og dernæst at vi alle havde det
+godt. Han var ude at købe is til os når det var varm og han tømte
+skraldespande og hjalp endda til med 3d modellering.
+\item Vores Computer Graphics artist (CG) lavede alle de svære 3d
+modeller til vores spil. Lige fra Teddy og katten til den kegle jeg
+skulle bruge til at få lys-kegler på katte-øjnene i labyrinten.
+\item Vi havde 2 animatorer som lavede 3d animationerne på vores
+figurer og hjalp vores visual artist med concept tegninger.
+\item En visual artist som lavede concept tegninger og plakater til
+vores program.
+\item En art director som stod for at lave textures og bumpmaps til
+alle de objekter vores CG havde lavet. Han stod også for en del af
+underholdningen undervejs i forløbet.
+\item En lyd designer som lavede eller fandt al den lyd der blev
+spillet igennem hele spillet.
+\end{itemize}
+
+\subsection{Mine arbejdsopgaver}
+
+Jeg stod først og fremmest for KI delen af vores spil. Jeg fik tildelt
+opgaven som KI mand fra starten af da jeg ville bruge min viden til
+dette bachelor projekt. Problemet blev til sidst at vi havde svært ved
+at få noget som helst KI passet ind i spillet. Det var blevet så stort
+at der var mange opgaver for os alle sammen hele tiden og jeg fik
+dårligt nok lov til at lave noget KI programmering.
+
+I stedet blev jeg sat på at lave level design til vores labyrint. Jeg
+lavede waypoints til de øjne der følger en rundt, jeg skrev den del
+der gør at de ved hvornår de kan se Teddy. Jeg fik modeleret næsten
+hele banen til med kasser i stedet for vægge så det kunne ligne noget
+man havde i kælderen. Jeg lavede game menu og tilpassede GUI
+elementer. Jeg fik sat forskellige lyde til at afspille når man ramte
+siderne i vaskemaskinen. Jeg satte alarm lyde på katte øjnene så man
+fik en ide om at man var i fare hvis man kom for tæt på de lyskeglerne
+på jorden.
+
+
+
+\subsection{Brugertest}
+
+Vi testede vores spil på børn mange gange i udviklingsforløbet, de
+havde aldrig problemer med at styre spillet. Nogen af dem var mere
+skarpe end andre og de kunne hjælpe hinanden med at gennemføre
+spillene. De første problemer vi havde med vores styremåder kom da det
+var voksne mennesker der skulle igennem banerne. De havde langt
+sværere ved at lære noget nyt og se det smarte i vores
+styringsmetoder. Børnene elskede at spille spillet hver gang, men det
+ændrede sig lidt med hvad de synes var det sjoveste. På et tidspunkt
+var der en fejl i spillet et sted så man kunne stå og se ud af banen,
+det var der selvfølgelig en af børnene der opdagede og så stod han der
+og kiggede ud i 5 min.
+
+\subsection{Problemer og udfordringer}
+
+En af de største problemer som vi fandt ved vores brugertest var at
+det var svært at finde rundt i den labyrint jeg havde lavet. Vi
+startede med en kameraføring der hele tiden holdt kameraet bagved
+Teddy. Problemet ved at gøre det på denne måde er at man meget let
+mister orienteringen hvis man laver nogle få sving i banen. Jeg kunne
+selv fare vild i det level design jeg havde lavet da kameraet stod
+sådan. Vi fandt ud af at vi var nødt til at få kameraet til at være
+mere fast så man bedre kunne følge med i hvilken vej man vendte. Det
+blev først til at kameraet roterede 90 grader ad gangen, men heller
+ikke dette var nok til at man kunne holde orienteringen. Banen så for
+anderledes ud fra de forskellige vinkler. Vi endte med at få kameraet
+til hele tiden at være på samme position i forhold til hele
+labyrinten. Problemet er så her at man let får kameraet til at komme
+om bagved de kasser der ligger i banen, så man ikke kan se Teddy. Vi
+forsøgte at løse dette ved at finde den rigtige højde for kameraet,
+både så man fik fornemmelsen af at kunne se toppen af kasserne men
+også så man ikke kom for langt fra Teddy og det virkede
+unaturligt. Til sidst fandt vi ud af at vi burde have styret kameraet
+med triggers igennem hele banen for at få det til at opføre sig
+optimalt, men det havde vi ikke tid til at implementere. Som det blev
+er det kun et problem at se Teddy et enkelt sted i labyrinten.
+
+\subsection{KI i spillet}
+
+Det der er i spillet af KI nu er de sæt øjne der er rundt omkring i
+labyrint banen. De har nogle bestemte waypoints som de følger rundt på
+gulvet for at dække et defineret areal. Disse katteøjne har et field
+of vision defineret som en vinkel ud fra hvor de ser. Teddy kan kun
+blive opdaget hvis han er inden for dette field of vision. Hver fixed
+update bliver der sendt et raycast ud fra der hvor hvert øje
+starter. Når der bliver brugt fixed update sker dette ikke i hvert
+frame men med en bestemt interval. Dette betyder at det koster det
+samme i performance om man har mange eller få frames per second. Dette
+raycast bliver sendt mod Teddy, hvis der ikke er noget der står i
+vejen for at han bliver ramt, så er det muligt at han kan blive set af
+øjnene. Så tjekkes vinklen mellem det raycast og Teddy. Hvis den er
+indenfor synsfeltet begynder alarmen at køre og man har 0.5 sekunder
+til at nå ud af øjets synsfelt igen.
+
+Øje sættene er kun tændt et ad gangen. Kun det sæt øjne er tændt som
+er tættest på Teddy i forholdt til den korteste vej han skal gå for at
+møde dem. Dette bliver fundet udfra nogle pathwaypoints som ligger ved
+hver skillevej eller sving i labyrinten. Jeg finder ud af hvilket
+punkt Teddy er tættest på og det kan så give beskeden direkte videre
+til det øje der er tættest på punktet. De tætteste øjne bliver fundet
+i steps. Enhver scene har 2 load funktioner, ``Awake()'' og
+``Start()''. De bliver kørt efter hinanden, derefter begynder
+``Update()'' at køre hvert frame. Som jeg implementerede shortest path
+nu kan hvert pathwaypoint maksimalt søge gennem 2 andre pathwaypoints
+som de kan se før der skal være et øje. Det at de kan se hinanden er
+defineret på om der er nogen væg-kasser imellem eller ej, hvis der
+ikke er kan de se hinanden. Dette virker upraktisk men det betyder
+samtidig at hele shortest path finding køres i $O(n)$ tid hvor $n$ er
+antallet af pathwaypoints. Algoritmen bliver samtidig kun kørt 1
+gang. Det vil sige at lige når banen bliver kaldt så kører algoritmen
+i sine små iterationer og derefter bliver alle andre end det tætteste
+øje deaktiveret.
+
+Det var meningen at alt skulle kunne proceduralt genereres så vi havde
+en ny labyrint hver gang man startede på den bane, det blev dog til
+for stort et arbejde. Det kunne have været meget mere interessandt, og
+alle algoritmerne i labyrinten var derfor lavet efter at kunne bruges
+igen og igen lige meget hvilken labyrintopsætning det blev til til sidst.
+
+Vi overvejede på det tidspunkt i udviklingen af spillet at indføre en
+ny karakter som skulle hjælpe og guide Teddy rundt i især
+labyrinten. Det skulle være et møl som blev tiltrukket af den våde
+bamse og som skulle blive hans ven. Møllet kunne flyve og derved se
+labyrinten ovenfra, enten skulle man kunne skifte kamera over til den
+så man kunne få et lidt større overblik. Men hvis det var blevet til
+noget havde møllet fungeret som en KI spiller der hjalp en hvis man
+kom for langt ud på et sidespor. Det skulle kunne hjælpe med at finde
+vej i labyrinten eller sige pas på hvis man var ved at komme for tæt
+på at blive fanget af katteøjnene. Der skulle altså være en muligvis
+ikke korteste vej algoritme, men i hvert fald en mulig-vej algoritme
+på dette møl som først kunne bruges til at verificere at labyrinten
+var gyldig (dvs. at der var en vej fra start til slut) og derefter kan
+guide Teddy hvis det tager for lang tid for ham at finde vejen. 
+
+Da vi fandt ud af at vi ikke ville proceduralt generere labyrinten
+fjernede vi også møllet som hjælperen og ændrede planen for at få
+indført KI i spillet. I stedet skulle jeg implementere flocking på de
+kakerlakker der nu bare går rundt i banen. De skulle søge hen mod
+Teddy når han kom indenfor en vis radius af dem. Jo flere kakerlakker
+der flocker rundt om Teddy jo sværere vil det være at bevæge sig
+rundt. Samtidig skulle katteøjnene begynde at følge hurtigere og
+hurtigere efter kakerlakkernes ``lyd'' efterhånden som flere af dem
+blev samlet på vejen. Dette skulle gøre banen langt sværerere at komme
+igennem men samtidig give mulighed for alternativt gameplay. Vi ville
+implementere det så man havde en mulighed for at få kakerlakkerne til
+at gå væk igen enten ved at træde på dem eller lave en stampefunktion
+hvis man klikker direkte på Teddy. Så skulle kakerlakkerne løbe væk i
+et par sekunder og hvis man selv kommer udenfor den radius hvor de
+finder en i kan man spille videre uforstyrret indtil man løber ind i
+flere kakerlakker. Jeg fik desværre aldrig tid til under forløbet at
+implementere denne funktionalitet til kakerlakkerne da der var for
+meget andet udenoms arbejde. Det var kun fordi jeg meget hurtigt fik
+sat kakerlakker ind i spillet med utilregnelig bevægelse at de kom
+med.
+
+Vi havde under hele produktionene diskussioner om hvor og hvordan vi
+kunne få noget KI inkluderet i vores projekt da det ikke gav mening
+rigtigt at have noget som helst af det. Det var rent ekstraarbejde og
+ingen af de andre var specielt opsatte på at der skulle god KI med i
+spillet da det ikke ville være en essentiel del i det og ikke ville
+medvirke stort på spiloplevelsen.
+
+
+%%% Local Variables: 
+%%% mode: latex 
+%%% TeX-master: "../../report"
+%%% End:
