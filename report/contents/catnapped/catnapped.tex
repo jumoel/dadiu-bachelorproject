@@ -81,61 +81,46 @@ havde mulighed for at finde noget at lave.
 \subsection{Mine arbejdsopgaver}
 
 Jeg stod først og fremmest for KI-delen af vores spil. Jeg fik tildelt
-opgaven som KI mand fra starten af da jeg ville bruge min viden til
-dette bachelor projekt. Problemet blev til sidst at vi havde svært ved
-at få noget som helst KI passet ind i spillet. Det var blevet så stort
-at der var mange opgaver for os alle sammen hele tiden og jeg fik
-dårligt nok lov til at lave noget KI programmering.
+ansvaret for vores kunstige intelligens. Det endte dog med at vi havde
+svært ved at få noget som helst KI implementeret i spillet. [TODO: INDSÆT
+TEKST OM AT HER VIL VI REFERERERERE TIL AFSNIT OM HVORFOR DER IKKE
+ENDTE MED AT VÆRE NOGET KI I SPILLET]
 
-I stedet blev jeg sat på at lave level design til vores labyrint. Jeg
-lavede waypoints til de øjne der følger en rundt, jeg skrev den del
-der gør at de ved hvornår de kan se Teddy. Jeg fik modeleret næsten
-hele banen til med kasser i stedet for vægge så det kunne ligne noget
-man havde i kælderen. Jeg lavede game menu og tilpassede GUI
-elementer. Jeg fik sat forskellige lyde til at afspille når man ramte
-siderne i vaskemaskinen. Jeg satte alarm lyde på katte øjnene så man
-fik en ide om at man var i fare hvis man kom for tæt på de lyskeglerne
-på jorden.
+I stedet endte mine arbejdsopgaver med at være følgende:
 
-
+\begin{itemize}
+\item Leveldesign i labyrinten
+\item Waypoints til de øjne der følger spilleren
+\item Implementerede funktionalitet så øjnene kunne fange Teddy
+\item Spilmenuen
+\item GUI-elementer
+\item Diverse lydimplementering
+\end{itemize}
 
 \subsection{Brugertest}
 
-Vi testede vores spil på børn mange gange i udviklingsforløbet, de
-havde aldrig problemer med at styre spillet. Nogen af dem var mere
-skarpe end andre og de kunne hjælpe hinanden med at gennemføre
-spillene. De første problemer vi havde med vores styremåder kom da det
-var voksne mennesker der skulle igennem banerne. De havde langt
-sværere ved at lære noget nyt og se det smarte i vores
-styringsmetoder. Børnene elskede at spille spillet hver gang, men det
-ændrede sig lidt med hvad de synes var det sjoveste. På et tidspunkt
-var der en fejl i spillet et sted så man kunne stå og se ud af banen,
-det var der selvfølgelig en af børnene der opdagede og så stod han der
-og kiggede ud i 5 min.
+Vi testede vores spil på børn mange gange i udviklingsforløbet. Nogle
+af børnene var bedre end andre, men de hjalp ofte hinanden. Børnene
+havde ikke umiddelbart problemer med at forstå styringsmåden. Det var
+dog ikke tilfældet for de voksne, der prøvede spillet. [TODO: INDSÆT
+EKSEMPLER HER] [TODO: INDSÆT RESULTATER AF BRUGERTEST HER]
 
 \subsection{Problemer og udfordringer}
 
-En af de største problemer som vi fandt ved vores brugertest var at
-det var svært at finde rundt i den labyrint jeg havde lavet. Vi
-startede med en kameraføring der hele tiden holdt kameraet bagved
-Teddy. Problemet ved at gøre det på denne måde er at man meget let
-mister orienteringen hvis man laver nogle få sving i banen. Jeg kunne
-selv fare vild i det level design jeg havde lavet da kameraet stod
-sådan. Vi fandt ud af at vi var nødt til at få kameraet til at være
-mere fast så man bedre kunne følge med i hvilken vej man vendte. Det
-blev først til at kameraet roterede 90 grader ad gangen, men heller
-ikke dette var nok til at man kunne holde orienteringen. Banen så for
-anderledes ud fra de forskellige vinkler. Vi endte med at få kameraet
-til hele tiden at være på samme position i forhold til hele
-labyrinten. Problemet er så her at man let får kameraet til at komme
-om bagved de kasser der ligger i banen, så man ikke kan se Teddy. Vi
-forsøgte at løse dette ved at finde den rigtige højde for kameraet,
-både så man fik fornemmelsen af at kunne se toppen af kasserne men
-også så man ikke kom for langt fra Teddy og det virkede
-unaturligt. Til sidst fandt vi ud af at vi burde have styret kameraet
-med triggers igennem hele banen for at få det til at opføre sig
-optimalt, men det havde vi ikke tid til at implementere. Som det blev
-er det kun et problem at se Teddy et enkelt sted i labyrinten.
+En af de største problemer der blev afdækket af vores brugertest var,
+at det var svært at finde rundt i labyrinten. Vi startede med et
+kamera der hele tiden var bag Teddy. Det medførte at spillerne mistede
+orienteringen og farede vild. Vi fandt ud af at vi var nødt til at
+have et mere stationært kamera så det var klarere, hvilken vej man
+gik. I første udgave roterede kameraet 90 grader ad gangen, men
+spillerne blev stadig desorienterede. Banen så for anderledes ud fra
+de forskellige vinkler. Derfor endte vi med at fjerne al rotation fra
+kameraet og placere det over spilleren. Her fik vi det problem at
+kameraet let kom til at være placeret bag væggene i banen, så man ikke
+kunne se Teddy. Vi forsøgte at løse dette ved at finde den rigtige
+højde for kameraet. Det gjorde at man både fik fornemmelsen af at
+kunne se toppen af kasserne men gjorde også at kameraet ikke kom for
+langt fra Teddy.
 
 \subsection{KI i spillet}
 
@@ -222,6 +207,17 @@ ingen af de andre var specielt opsatte på at der skulle god KI med i
 spillet da det ikke ville være en essentiel del i det og ikke ville
 medvirke stort på spiloplevelsen.
 
+[TODO: HVIS SKYLD VAR DET AT KI'EN SEJLEDE?]
+
+[TODO: REFLEKTERING OVER BRUGERTEST]
+
+[TODO: INDSÆT DETTE I ET AFSNIT OM TING DER KUNNE FORBEDRES:
+
+Til sidst fandt vi ud af at vi burde
+have styret kameraet med triggers igennem hele banen for at få det til
+at opføre sig optimalt, men det havde vi ikke tid til at
+implementere. Som det blev er det kun et problem at se Teddy et enkelt
+sted i labyrinten.]
 
 %%% Local Variables: 
 %%% mode: latex 
