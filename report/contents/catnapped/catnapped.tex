@@ -124,100 +124,99 @@ langt fra Teddy.
 
 \subsection{KI i spillet}
 
-Det der er i spillet af KI nu er de sæt øjne der er rundt omkring i
-labyrint banen. De har nogle bestemte waypoints som de følger rundt på
-gulvet for at dække et defineret areal. Disse katteøjne har et field
-of vision defineret som en vinkel ud fra hvor de ser. Teddy kan kun
-blive opdaget hvis han er inden for dette field of vision. Hver fixed
-update bliver der sendt et raycast ud fra der hvor hvert øje
-starter. Når der bliver brugt fixed update sker dette ikke i hvert
-frame men med en bestemt interval. Dette betyder at det koster det
-samme i performance om man har mange eller få frames per second. Dette
-raycast bliver sendt mod Teddy, hvis der ikke er noget der står i
-vejen for at han bliver ramt, så er det muligt at han kan blive set af
-øjnene. Så tjekkes vinklen mellem det raycast og Teddy. Hvis den er
-indenfor synsfeltet begynder alarmen at køre og man har 0.5 sekunder
-til at nå ud af øjets synsfelt igen.
+Den kunstige intelligens i spillet endte med at være kattens øjne i
+labyrinten og den sidste bane.
 
-Øje sættene er kun tændt et ad gangen. Kun det sæt øjne er tændt som
-er tættest på Teddy i forholdt til den korteste vej han skal gå for at
-møde dem. Dette bliver fundet udfra nogle pathwaypoints som ligger ved
-hver skillevej eller sving i labyrinten. Jeg finder ud af hvilket
-punkt Teddy er tættest på og det kan så give beskeden direkte videre
-til det øje der er tættest på punktet. De tætteste øjne bliver fundet
-i steps. Enhver scene har 2 load funktioner, ``Awake()'' og
-``Start()''. De bliver kørt efter hinanden, derefter begynder
-``Update()'' at køre hvert frame. Som jeg implementerede shortest path
-nu kan hvert pathwaypoint maksimalt søge gennem 2 andre pathwaypoints
-som de kan se før der skal være et øje. Det at de kan se hinanden er
-defineret på om der er nogen væg-kasser imellem eller ej, hvis der
-ikke er kan de se hinanden. Dette virker upraktisk men det betyder
-samtidig at hele shortest path finding køres i $O(n)$ tid hvor $n$ er
-antallet af pathwaypoints. Algoritmen bliver samtidig kun kørt 1
-gang. Det vil sige at lige når banen bliver kaldt så kører algoritmen
-i sine små iterationer og derefter bliver alle andre end det tætteste
-øje deaktiveret.
+I labyrinten er der en række \emph{waypoints}. Det bestemmes ved hjælp
+af \emph{pathfinding} hvilket waypoint spilleren er tættest på. Ved
+dette waypoint aktiveres katteøjnene, som søger efter spilleren i et
+forudbestemt mønster. Der er kun ét sæt katteøjne aktiveret af gangen.
 
-Det var meningen at alt skulle kunne proceduralt genereres så vi havde
-en ny labyrint hver gang man startede på den bane, det blev dog til
-for stort et arbejde. Det kunne have været meget mere interessandt, og
-alle algoritmerne i labyrinten var derfor lavet efter at kunne bruges
-igen og igen lige meget hvilken labyrintopsætning det blev til til sidst.
+Hvis spilleren bliver opdaget inde i lyskeglen fra et sæt øjne, bliver
+han fanget af katten og skal starte banen forfra.
 
-Vi overvejede på det tidspunkt i udviklingen af spillet at indføre en
-ny karakter som skulle hjælpe og guide Teddy rundt i især
-labyrinten. Det skulle være et møl som blev tiltrukket af den våde
-bamse og som skulle blive hans ven. Møllet kunne flyve og derved se
-labyrinten ovenfra, enten skulle man kunne skifte kamera over til den
-så man kunne få et lidt større overblik. Men hvis det var blevet til
-noget havde møllet fungeret som en KI spiller der hjalp en hvis man
-kom for langt ud på et sidespor. Det skulle kunne hjælpe med at finde
-vej i labyrinten eller sige pas på hvis man var ved at komme for tæt
-på at blive fanget af katteøjnene. Der skulle altså være en muligvis
-ikke korteste vej algoritme, men i hvert fald en mulig-vej algoritme
-på dette møl som først kunne bruges til at verificere at labyrinten
-var gyldig (dvs. at der var en vej fra start til slut) og derefter kan
-guide Teddy hvis det tager for lang tid for ham at finde vejen. 
+[TODO: Omskriv så det er mindre teknisk og kun de ``interessante'' dele.]
+% Øje sættene er kun tændt et ad gangen. Kun det sæt øjne er tændt som
+% er tættest på Teddy i forholdt til den korteste vej han skal gå for at
+% møde dem. Dette bliver fundet udfra nogle pathwaypoints som ligger ved
+% hver skillevej eller sving i labyrinten. Jeg finder ud af hvilket
+% punkt Teddy er tættest på og det kan så give beskeden direkte videre
+% til det øje der er tættest på punktet. De tætteste øjne bliver fundet
+% i steps. Enhver scene har 2 load funktioner, ``Awake()'' og
+% ``Start()''. De bliver kørt efter hinanden, derefter begynder
+% ``Update()'' at køre hvert frame. Som jeg implementerede shortest path
+% nu kan hvert pathwaypoint maksimalt søge gennem 2 andre pathwaypoints
+% som de kan se før der skal være et øje. Det at de kan se hinanden er
+% defineret på om der er nogen væg-kasser imellem eller ej, hvis der
+% ikke er kan de se hinanden. Dette virker upraktisk men det betyder
+% samtidig at hele shortest path finding køres i $O(n)$ tid hvor $n$ er
+% antallet af pathwaypoints. Algoritmen bliver samtidig kun kørt 1
+% gang. Det vil sige at lige når banen bliver kaldt så kører algoritmen
+% i sine små iterationer og derefter bliver alle andre end det tætteste
+% øje deaktiveret.
 
-Da vi fandt ud af at vi ikke ville proceduralt generere labyrinten
-fjernede vi også møllet som hjælperen og ændrede planen for at få
-indført KI i spillet. I stedet skulle jeg implementere flocking på de
-kakerlakker der nu bare går rundt i banen. De skulle søge hen mod
-Teddy når han kom indenfor en vis radius af dem. Jo flere kakerlakker
-der flocker rundt om Teddy jo sværere vil det være at bevæge sig
-rundt. Samtidig skulle katteøjnene begynde at følge hurtigere og
-hurtigere efter kakerlakkernes ``lyd'' efterhånden som flere af dem
-blev samlet på vejen. Dette skulle gøre banen langt sværerere at komme
-igennem men samtidig give mulighed for alternativt gameplay. Vi ville
-implementere det så man havde en mulighed for at få kakerlakkerne til
-at gå væk igen enten ved at træde på dem eller lave en stampefunktion
-hvis man klikker direkte på Teddy. Så skulle kakerlakkerne løbe væk i
-et par sekunder og hvis man selv kommer udenfor den radius hvor de
-finder en i kan man spille videre uforstyrret indtil man løber ind i
-flere kakerlakker. Jeg fik desværre aldrig tid til under forløbet at
-implementere denne funktionalitet til kakerlakkerne da der var for
-meget andet udenoms arbejde. Det var kun fordi jeg meget hurtigt fik
-sat kakerlakker ind i spillet med utilregnelig bevægelse at de kom
-med.
+I \emph{boss}-banen forsøger katten også at fange spilleren i lyset
+fra sine øjne. For at forhindre det, kan spilleren gemme sig bag nogle
+kasser i begge sider. Når spilleren gemmer sig, følger øjnene
+efter. Derefter begynder katten at søge rundt omkring kassen for at
+forsøge at fange spilleren. Der er dog ikke noget system ved søgningen,
+der foregår vilkårligt.
 
+[TODO: HVIS SKYLD VAR DET AT KI'EN SEJLEDE?
+%%
 Vi havde under hele produktionene diskussioner om hvor og hvordan vi
 kunne få noget KI inkluderet i vores projekt da det ikke gav mening
 rigtigt at have noget som helst af det. Det var rent ekstraarbejde og
 ingen af de andre var specielt opsatte på at der skulle god KI med i
 spillet da det ikke ville være en essentiel del i det og ikke ville
 medvirke stort på spiloplevelsen.
-
-[TODO: HVIS SKYLD VAR DET AT KI'EN SEJLEDE?]
+%%
+]
 
 [TODO: REFLEKTERING OVER BRUGERTEST]
 
 [TODO: INDSÆT DETTE I ET AFSNIT OM TING DER KUNNE FORBEDRES:
+%%
+I slutningen af forløbet fandt vi ud af, at vi ud af at vi burde have
+styret kameraet med \emph{triggers} igennem hele banen for at få
+kameraet til at opføre sig optimalt, men det havde vi ikke tid til at
+implementere.
+%%
+Det var vores meningen at labyrinten skulle kunne genereres
+proceduralt så vi havde en ny labyrint hver gang man startede
+banen. Det blev dog for stort et arbejde, men kunne have gjort banen
+meget mere interessant. Alle algoritmerne vi brugte i labyrinten blev
+derfor lavet så de kunne bruges igen og igen, lige meget hvilken
+labyrintopsætning der blev anvendt. Skulle labyrinten genereres
+proceduralt, skulle der dog også være implementeret noget
+verificering, så det blev undersøgt om det var muligt at finde igennem
+den genererede labyrint.
 
-Til sidst fandt vi ud af at vi burde
-have styret kameraet med triggers igennem hele banen for at få det til
-at opføre sig optimalt, men det havde vi ikke tid til at
-implementere. Som det blev er det kun et problem at se Teddy et enkelt
-sted i labyrinten.]
+Vi overvejede på et tidspunkt i udviklingen af spillet at indføre en
+ny figur som skulle hjælpe Teddy rundt i labyrinten. Det skulle være
+et møl som blev tiltrukket af Teddy og blev hans ven. Møllet skulle
+kunne flyve og derved se labyrinten ovenfra. Idéen var, at man skulle
+kunne skifte kameravinkel og se møllets perspektiv så man kunne få et
+lidt bedre overblik. En anden idé var at møllet skulle guide spilleren
+igennem direkte. Møllet skulle også kunne advare mod farer,
+dvs. katteøjnene.
+
+Da vi fandt ud af at vi ikke ville proceduralt generere labyrinten
+fjernede vi også møllet som hjælperen og ændrede planen for at få
+indført KI i spillet. I stedet skulle der implementeres
+\emph{flocking} [INDSÆT KILDE TIL FLOCKING ARTIKEL] på de kakerlakker
+der nu bare går rundt i banen. De skulle søge hen mod Teddy når han
+kom indenfor en bestemt radius af dem. Jo flere kakerlakker der var
+omkring Teddy, jo sværere skulle det være at bevæge sig
+rundt. Samtidig skulle katteøjnene begynde at følge hurtigere og
+hurtigere efter kakerlakkernes ``lyd'' jo flere kakerlakker der
+var. Dette skulle gøre banen langt sværerere at komme igennem men
+samtidig give mulighed for alternativt gameplay, da vi ville
+implementere mulighed for at træde på kakerlakkerne og dermed få dem
+til at forsvinde. Stødte man senere ind i nye kakerlakker ville de
+begynde at følge efter spilleren påny.
+%%
+]
 
 %%% Local Variables: 
 %%% mode: latex 
