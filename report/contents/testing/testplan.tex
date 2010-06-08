@@ -28,15 +28,38 @@ os nok data til at finde en sammenhæng.
 % spillene først, varierer vi hvilken type, børnene starter med at
 % spille.
 
-[TODO: SKAL VI VARIERE RÆKKEFØLGEN, SOM FX I-C-S-I-C-S ELLER SKAL DET
-VÆRE I-I-C-C-S-S?]
+For at børnene ikke skal spille den samme bane to gange i træk, skal
+vi skifte mellem spillene efter hver bane.
 
 Vi har på baggrund af ovenstående, valgt at producere følgende
 testplan:
 
-\begin{tabular}[h]{llll}
-  \textbf{Barn} & \textbf{Spil 1} & \textbf{Spil 2} & \textbf{Spil 3} 
-\end{tabular}
+\begin{landscape}
+\scriptsize{
+\begin{longtable}[h]{lllllll}
+  \textbf{Barn} & \textbf{Spil 1} & \textbf{Spil 2} & \textbf{Spil 3}
+  & \textbf{Spil 4} & \textbf{Spil 5} & \textbf{Spil 6} \\
+
+  1 & \ima (uden KI) & \cat & \sop (uden KI) & \ima & \cat (uden KI) &
+  \\
+
+  2 & \ima & \sop (uden KI) & \cat (uden KI) & \ima (uden KI) & \sop &
+  \cat \\
+
+  3 & \cat (uden KI) & \ima & \sop & \cat & \ima (uden KI) & \sop
+  (uden KI) \\
+
+  4 & \cat & \sop & \ima (uden KI) & \cat (uden KI) & \sop (uden KI) &
+  \ima \\
+
+  5 & \sop (uden KI) & \ima (uden KI) &  \cat & \sop & \ima & \cat
+  (uden KI) \\
+
+  6 & \sop & \cat (uden KI) & \ima & \sop (uden KI) & \cat & \ima
+  (uden KI)
+\end{longtable}
+}
+\end{landscape}
 
 [TODO: RÆKKEFØLGE, JEG KAN IKKE LIGE OVERSKUE DET :)]
 
