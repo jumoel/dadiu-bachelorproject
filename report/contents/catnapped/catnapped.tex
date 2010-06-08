@@ -1,6 +1,7 @@
 \section{Catnapped: The Bear Affair}
 \label{sec:catnapped}
 
+
 \subsection{Spillet}
 
 Catnapped er en historie om en teddybamse og en kat fortalt gennem et
@@ -102,8 +103,17 @@ I stedet endte mine arbejdsopgaver med at være følgende:
 Vi testede vores spil på børn mange gange i udviklingsforløbet. Nogle
 af børnene var bedre end andre, men de hjalp ofte hinanden. Børnene
 havde ikke umiddelbart problemer med at forstå styringsmåden. Det var
-dog ikke tilfældet for de voksne, der prøvede spillet. [TODO: INDSÆT
-EKSEMPLER HER] [TODO: INDSÆT RESULTATER AF BRUGERTEST HER]
+dog ikke tilfældet for de voksne, der prøvede spillet. Det var meget
+tydeligt ved brugertest at i hvert fald nogle børn fangede
+styringsmåden lige med det samme. De løb rundt i labyrinten med det
+samme uden at se sig tilbage. Hvis nogle af de andre børn havde
+problemer med at styre var der straks hjælp at hente hos
+sidemanden. Dette var ikke tilfældet med fx den publisher der kom ud
+for at se spillet. Vi blev til sidst nødt til at forklare ham at man
+skulle blive ved med at holde venstre museknap nede for at Teddy gik
+fremad. 
+
+[TODO: INDSÆT RESULTATER AF BRUGERTEST HER]
 
 \subsection{Problemer og udfordringer}
 
@@ -135,25 +145,16 @@ forudbestemt mønster. Der er kun ét sæt katteøjne aktiveret af gangen.
 Hvis spilleren bliver opdaget inde i lyskeglen fra et sæt øjne, bliver
 han fanget af katten og skal starte banen forfra.
 
-[TODO: Omskriv så det er mindre teknisk og kun de ``interessante'' dele.]
-% Øje sættene er kun tændt et ad gangen. Kun det sæt øjne er tændt som
-% er tættest på Teddy i forholdt til den korteste vej han skal gå for at
-% møde dem. Dette bliver fundet udfra nogle pathwaypoints som ligger ved
-% hver skillevej eller sving i labyrinten. Jeg finder ud af hvilket
-% punkt Teddy er tættest på og det kan så give beskeden direkte videre
-% til det øje der er tættest på punktet. De tætteste øjne bliver fundet
-% i steps. Enhver scene har 2 load funktioner, ``Awake()'' og
-% ``Start()''. De bliver kørt efter hinanden, derefter begynder
-% ``Update()'' at køre hvert frame. Som jeg implementerede shortest path
-% nu kan hvert pathwaypoint maksimalt søge gennem 2 andre pathwaypoints
-% som de kan se før der skal være et øje. Det at de kan se hinanden er
-% defineret på om der er nogen væg-kasser imellem eller ej, hvis der
-% ikke er kan de se hinanden. Dette virker upraktisk men det betyder
-% samtidig at hele shortest path finding køres i $O(n)$ tid hvor $n$ er
-% antallet af pathwaypoints. Algoritmen bliver samtidig kun kørt 1
-% gang. Det vil sige at lige når banen bliver kaldt så kører algoritmen
-% i sine små iterationer og derefter bliver alle andre end det tætteste
-% øje deaktiveret.
+[TODO: Omskriv så det er mindre teknisk og kun de ``interessante''
+dele.]
+
+
+Øje sættene er kun tændt et ad gangen. Kun det sæt øjne som er tættest
+på spilleren i følge den indbyggede shortest path. Shortest path
+bliver kun fundet lige når banen bliver initieret. Informationen
+bliver gemt i små felter i gulvet, så det er kun nødvendigt at finde
+hvilket felt der er tættest på spilleren, for at finde det tætteste
+øjesæt.
 
 I \emph{boss}-banen forsøger katten også at fange spilleren i lyset
 fra sine øjne. For at forhindre det, kan spilleren gemme sig bag nogle
@@ -161,21 +162,21 @@ kasser i begge sider. Når spilleren gemmer sig, følger øjnene
 efter. Derefter begynder katten at søge rundt omkring kassen for at
 forsøge at fange spilleren. Der er dog ikke noget system ved søgningen,
 der foregår vilkårligt.
-
-[TODO: HVIS SKYLD VAR DET AT KI'EN SEJLEDE?
 %%
 Vi havde under hele produktionene diskussioner om hvor og hvordan vi
 kunne få noget KI inkluderet i vores projekt da det ikke gav mening
 rigtigt at have noget som helst af det. Det var rent ekstraarbejde og
-ingen af de andre var specielt opsatte på at der skulle god KI med i
-spillet da det ikke ville være en essentiel del i det og ikke ville
+ingen af de andre var opsatte på at der skulle god KI med i
+spillet. Det ikke ville være en essentiel del i det og ikke ville
 medvirke stort på spiloplevelsen.
+
+
 %%
-]
 
-[TODO: REFLEKTERING OVER BRUGERTEST]
 
-[TODO: INDSÆT DETTE I ET AFSNIT OM TING DER KUNNE FORBEDRES:
+\subsection{Mulige forbedringer}
+\label{sec:Forbedringer}
+
 %%
 I slutningen af forløbet fandt vi ud af, at vi ud af at vi burde have
 styret kameraet med \emph{triggers} igennem hele banen for at få
@@ -216,7 +217,22 @@ implementere mulighed for at træde på kakerlakkerne og dermed få dem
 til at forsvinde. Stødte man senere ind i nye kakerlakker ville de
 begynde at følge efter spilleren påny.
 %%
-]
+
+Det er sandsynligvis min egen skyld at der til sidst ikke kom så meget
+KI med i spillet som jeg gerne ville have. Det tog mig for lang tid at
+prøve at finde en algoritme til 2D flocking på kakerlakkerne, jeg
+burde have skrevet den selv fra starten. Jeg fik ikke lov til at
+inkludere det møl vi havde overvejet da det ville kræve for meget
+ekstra arbejde for de andre på holdet. Til sidst var der bare for
+mange ting at få rettet igennem til at jeg fik tid til at se på
+flocking. Problemet var også at der aldrig blev taget hensyn til at
+jeg gerne ville have mere KI med i spillet. At få flocking på
+kakerlakkerne ville ikke ændre det generelle udtryk man fik af spillet
+som helhed. Det ville have været en ekstra gode, men vores game
+designer kunne ikke se hvilke muligheder det kunne åbne op for. Jeg
+mente det kunne give brugeren et til fokus i labyrinten, måske ville
+børnene synes at kakerlakkerne var sjove at lege med.
+
 
 %%% Local Variables: 
 %%% mode: latex 
