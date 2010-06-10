@@ -11,16 +11,83 @@ public class Heatmap : MonoBehaviour
     public List<Vector4> heatOutput = new List<Vector4>();
     private Vector4 heatGather;
     public Transform target;
+    public Transform[] objectsOutliningMap;
     private float theTimeBefore;
     private float theTime;
     private int numOfLogFiles = 0;
     private string fileName;
     private bool hasWritten;
+    private float minX;
+    private float minY;
+    private float minZ;
+    private float maxX;
+    private float maxY;
+    private float maxZ;
+    private float[] minXs;
+    private float[] minYs;
+    private float[] minZs;
+    private float[] maxXs;
+    private float[] maxYs;
+    private float[] maxZs;
+
     // Use this for initialization
     void Start()
     {
         fileName = transform.name.ToString() + "_log_" + numOfLogFiles.ToString() + ".log";
         Debug.Log("fileName");
+
+        int numOfOutliners = objectsOutliningMap.Length;
+
+        minXs = new float[numOfOutliners];
+        minYs = new float[numOfOutliners];
+        minZs = new float[numOfOutliners];
+        maxXs = new float[numOfOutliners];
+        maxYs = new float[numOfOutliners];
+        maxZs = new float[numOfOutliners];
+
+        
+        for (int i = 0; i < objectsOutliningMap.Length; i++)
+        {
+            minXs[i] = objectsOutliningMap[i].position.x;
+            minYs[i] = objectsOutliningMap[i].position.y;
+            minZs[i] = objectsOutliningMap[i].position.z;
+            maxXs[i] = objectsOutliningMap[i].position.x;
+            maxYs[i] = objectsOutliningMap[i].position.y;
+            maxZs[i] = objectsOutliningMap[i].position.z;
+        }
+
+        minX = getMinimum(minXs);
+        minY = getMinimum(minYs);
+        minZ = getMinimum(minZs);
+        maxX = getMaximum(maxXs);
+        maxY = getMaximum(maxYs);
+        maxZ = getMaximum(maxZs);
+        
+    }
+
+    // Function to get the minimum float value out of a float array.
+    private float getMinimum(float[] minInput)
+    {
+        float currentMin = minInput[0];
+
+        foreach (float value in minInput)
+        {
+            if (value <= currentMin)
+                currentMin = value;
+        }
+
+        return currentMin;
+    }
+
+    private float getMaximum(float[] maxInput)
+    {
+        float currentMax = maxInput[0];
+
+        foreach (float value in maxInput)
+            if (value >= currentMax)
+                currentMax = value;
+
+        return currentMax;
     }
 
     public void writeListToFile(string destFile)
@@ -39,13 +106,33 @@ public class Heatmap : MonoBehaviour
                 destFile = transform.name.ToString() + "_log_" + numOfLogFiles.ToString() + ".log";
             }
 
+            //xmin: 1000
+            //xmax: 2000
+            //ymin: 1
+            //ymax: 5
+            //zmin: 100000
+            //zmax: 213213213213213
+
+            int extraValues = 7;
 
             Vector4[] outputArray = heatOutput.ToArray();
-            int i = outputArray.Length;
-            object[] obj = new object[i];
-            for (i = 0; i < outputArray.Length; i++)
+            int outArrayLength = outputArray.Length + extraValues;
+            object[] obj = new object[outArrayLength];
+
+            obj[0] = "Min X value: " + minX.ToString();
+            obj[1] = "Min Y value: " + minY.ToString();
+            obj[2] = "Min Z value: " + minZ.ToString();
+            obj[3] = "Max X value: " + maxX.ToString();
+            obj[4] = "Max Y value: " + maxY.ToString();
+            obj[5] = "Max Z value: " + maxZ.ToString();
+            obj[6] = "Key: charpos in X , Y , Z , Time since start capture";
+
+
+            int j = extraValues;
+            for (int i = 0; i < outputArray.Length; i++)
             {
-                obj[i] = outputArray[i].ToString();
+                obj[j] = (outputArray[i].x.ToString() + " , " + outputArray[i].y.ToString() + " , " + outputArray[i].z.ToString() + " , " + outputArray[i].w.ToString());
+                j++;
             }
 
             // use ,true if you want to append data to file
@@ -53,12 +140,12 @@ public class Heatmap : MonoBehaviour
             // file location, name, and ext.  then when you press save it will save it
 
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(destFile))
+            {
                 foreach (string line in obj)
                 {
                     file.WriteLine(line);
                 }
-
-
+            }
             Debug.Log("File written successfully");
         }
         catch (Exception ex)
@@ -115,7 +202,7 @@ public class Heatmap : MonoBehaviour
     void FixedUpdate()
     {
         if (record)
-        {   
+        {
             // Remove the next line when the functions are called the way they are supposed to be.
             if (hasWritten)
                 starttid();
