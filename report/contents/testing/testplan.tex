@@ -24,64 +24,23 @@ alle udgaver af alle spil én gang som ``andet spil'' og én gang som
 ``tredje spil''.  Vi håber at seks resultater for hvert spil vil give
 os nok data til at finde en sammenhæng.
 
-% For at nogle børn ikke udelukkende har spillet KI-udgaverne af %
-spillene først, varierer vi hvilken type, børnene starter med at %
-spille.
+% For at nogle børn ikke udelukkende har spillet KI-udgaverne af
+% spillene først, varierer vi hvilken type, børnene starter med at
+% spille.
 
-For at børnene ikke skal spille den samme bane to gange i træk, skal
-vi skifte mellem spillene efter hver bane.
+[TODO: SKAL VI VARIERE RÆKKEFØLGEN, SOM FX I-C-S-I-C-S ELLER SKAL DET
+VÆRE I-I-C-C-S-S?]
 
 Vi har på baggrund af ovenstående, valgt at producere følgende
 testplan:
 
-\newpage
-\begin{longtable}{|l|ll|} \hline 
+\begin{tabular}[h]{llll}
+  \textbf{Barn} & \textbf{Spil 1} & \textbf{Spil 2} & \textbf{Spil 3} 
+\end{tabular}
 
-\textbf{Barn} & \textbf{Spil 1} & \textbf{Spil 2} \\
-
-  1 & \ima (uden KI) & \cat  \\
-
-  2 & \ima & \sop (uden KI) \\
-
-  3 & \cat (uden KI) & \ima \\
-
-  4 & \cat & \sop \\
-
-  5 & \sop (uden KI) & \ima (uden KI) \\
-
-  6 & \sop & \cat (uden KI)  \\ \hline
-
-\textbf{Barn} & \textbf{Spil 3} & \textbf{Spil 4} \\
-
-1 & \sop (uden KI) & \ima \\
-
-2 & \cat (uden KI) & \ima (uden KI) \\
-
-3 & \sop & \cat \\
-
-4 & \ima (uden KI) & \cat (uden KI) \\
-
-5 & \cat & \sop \\
-
-6 & \ima & \sop (uden KI) \\\hline
-
-  \textbf{Barn} & \textbf{Spil 5} & \textbf{Spil 6}\\
-
-1 & \cat (uden KI) &\sop \\
-
-2 & \sop & \cat \\
-
-3 & \ima (uden KI) & \sop (uden KI) \\
-
-4 & \sop (uden KI) & \ima \\
-
-5 & \ima & \cat (uden KI) \\
-
-6 & \cat & \ima (uden KI) \\\hline
-\end{longtable}
 [TODO: RÆKKEFØLGE, JEG KAN IKKE LIGE OVERSKUE DET :)]
 
 %%% Local Variables: 
-%%% mode: latex 
+%%% mode: latex
 %%% TeX-master: "../../report"
-%%% End:
+%%% End: 
