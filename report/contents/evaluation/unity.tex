@@ -2,6 +2,112 @@
 \chapter{Unity3D evaluering}
 \label{cha:unity3d-evaluering}
 
+Unity3D er en udviklings platform beregnet til at udvikle spil i. Man
+bliver hurtigt overrasket over hvor let det er lige at sætte sig ind i
+Unity, og hvor hurtigt man får produceret noget der kan bruges og
+spilles.
+
+\section{Fordele ved Unity3D}
+\label{sec:unityfordele}
+
+Det er en kæmpe fordel at man virkelig kan føle der sker en forskel
+når man begynder at udvikle et spil i Unity. Man kommer igang med det
+samme og kan let opbygge en bane med en spiller i på kun få timer hvis
+det skal være. Det er alle peditesserne der tager lang tid at få på
+plads. Til gengæld er det også de små ting der gør forskellen for det
+færdige produkt, der får det til at være gennemarbejdet. 
+
+Unity er muligvis det spil-udviklings værktøj der er mest
+brugervenlig. Det bedste ved det er at det er så portable til alle
+mulige genre af spil. Muligvis ville en Half-Life engine være bedre
+til FPS spil, men selv Unity er ikke dårlig til FPS spil. Unity er
+rimelig god til alle slags spil, om det er FPS, RPG eller MMO spil
+eller noget helt andet. Det eneste kriterie er at spillet skal
+udvikles som et 3D spil. Ellers giver det ikke mening at bruge Unity3D
+til udviklingen.
+
+Vi havde aldrig arbejdet med Unity før denne produktion, men vi blev
+superbrugere af platformen i løbet af den første uge af
+produktionen. Der er virkelig mange ting med i unity som standard
+assets. Dette inkluderer lys, terræn, standard fps styremåde script
+til fps spil, de fysiske love og meget mere. Alt dette bliver let
+integreret i udviklingen. Det er især rart at fysikken er indbygget i
+spillet.
+
+Så længe man slår fysik til på et objekt vil det opføre sig som
+objekter gør i vores hverdagsliv. Hvis man kaster noget op falder det
+ned igen, hvis man kolliderer med en væg går man ikke igennem den men
+bliver stoppet. Hvis man \emph{applier} en kraft til et objekt vil det
+accelerere, med mindre objektet ligger på et en flade, og friktionen
+mellem overfladen og objektet er for høj.
+
+Når man skriver scripts i Unity har man to forskellige muligheder. Man
+kan vælge at skrive at alle sine scripts i java (ad bad!) eller man
+kan skrive dem i C# (yay!). Vi har alle hver for sig valgt at skrive
+vores scripts i C#, især på grund af øget performance. Når man skriver
+scripts til Unity er der forskellige biblioteker man kan udnytte fra
+Unity. Man kan regne med vektorer, generere objekter i sin bane, finde
+objekter i banen og udføre alskins operationer på dem. Det vil sige at
+vi har et meget kraftigt værktøj i hånden. Man kan gøre præcis det
+samme som man kan i C# normalt, og så snart det skal udføres på
+objekter i ens bane bruger man det indbyggede bibliotek.
+
+Der er også forskellige restriktioner på de scripts man laver. Fx kan
+man ikke lave applikationskald for hele banen eller programmet direkte
+fra objekterne i scenen. Dette betyder fungerer som en slags
+\emph{safeguard}. Man kan kun ændre ting for hele applikationen i
+scripts der ligger i en speciel \emph{Editor} mappe.
+
+
+\section{Ulemper ved Unity3D}
+\label{sec:unityulemper}
+
+Der er selvfølgelig også masser af ulemper ved Unity. Heldigvis er det
+for det meste ikke til hindring i selve spil-udviklingen, men nærmere
+små bugs eller irritationsmomenter mens man udvikler. Unity er stadig
+under udvikling og der kommer snart en ny version med endnu flere nye
+lækre funktioner.
+
+Unity har en indbygget Asset server. Denne server virker som en rigtig
+god ide, den holder styr på commits med versionskontrol, men den
+virker bare ikke altid lige som man vil have den til. Problemet er at
+man ikke kan merge en bane som er blevet ændret af to forskellige
+personer på hver deres datamat. Det er kun den der sidst har comittet
+der får sine ændringer med. Det vil sige at man hele tiden skal holde
+styr på hvem der sidder og arbejder på hvilken bane så man ikke skal
+gøre noget arbejde flere gange. Dette kan være meget forstyrrende for
+udviklings processen. Hvis Unity skal have sin indbyggede Asset server
+til at fungere bliver de nødt til at implementere en merge funktion
+der virker til banerne. Som det er lige nu er det kun muligt at merge
+script kode, men her skal man have et mergeprogram så som TortoiseSVN
+for at det kan lade sig gi' sig.
+
+Et andet stort problem er når man ved en fejltagelse kommer til at
+trække rundt på filer i unity folderne, inde fra Unity selv. Hvis man
+trækker en fil fra en mappe og til den samme mappe kommer der en
+fejl. I stedet for at der ikke sker noget som helst får man en
+fejlmeddeelse. Til denne meddeelse har man tre svar muligheder, [TODO:
+hvad er de første to muligheder???] og \emph{Force quit}. Hvis man i
+skyndingen, fordi man ser meddeelsen så tit, kommer til at trykke
+\emph{Force quit} så lukker Unity ned, uden at gemme det arbejde man
+sad og var igang med. Så hvis man først har fået sin commit
+overskrevet af en anden preceerende commit, derefter laver sine
+ændringer igen, og så kommer til at trykke \emph{Force quit}, så kan
+man få lov at starte forfra for anden gang.
+
+I unity er hvert objekt i C# også et objekt i unity banen. Dette
+virker først ret smart, men problemet er at man ikke kan have et tomt
+objekt uden det pludselig ender i ens bane et sted. Samtidig kan hvert
+objekt kun tilhøre et layer, og have et tag på sig. Det vil sige at
+ting som har flere funktioner ikke kan tagges med alle deres
+funktioner. Så skal man til at søge igennem alle objekter med et
+præcist navn på det objekt man skal bruge, i stedet for bare at få fat
+på det ved at referere til et tag. Nogle af os havde flere problemer
+med dette end andre.
+
+
+
+
 % asset server
 % binært sceneformat
 % ikke trådsikkert, men opfordrer til brug af tråde
