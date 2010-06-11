@@ -1,3 +1,3 @@
-# Heatmap generation in Python
+# DADIU Bachelorprojekt
 
-This does stuff.
+We do it!
