@@ -16,12 +16,44 @@ public class Heatmap : MonoBehaviour
     private int numOfLogFiles = 0;
     private string fileName;
     private bool hasWritten;
+    private float minX;
+    private float minY;
+    private float minZ;
+    private float maxX;
+    private float maxY;
+    private float maxZ;
+
     // Use this for initialization
     void Start()
     {
         fileName = transform.name.ToString() + "_log_" + numOfLogFiles.ToString() + ".log";
         Debug.Log("fileName");
+
+        CalculateSize();
+
     }
+
+
+    void CalculateSize()
+    {
+        Bounds bounds = new Bounds(Vector3.zero, Vector3.zero);
+        foreach (GameObject g in GameObject.FindObjectsOfType(typeof(GameObject)))
+        {
+            if (g.transform.renderer != null)
+            {
+                bounds.Encapsulate(g.transform.renderer.bounds);
+            }
+        }
+
+        minX = (bounds.center - bounds.extents).x;
+        minY = (bounds.center - bounds.extents).y;
+        minZ = (bounds.center - bounds.extents).z;
+        maxX = (bounds.center + bounds.extents).x;
+        maxY = (bounds.center + bounds.extents).y;
+        maxZ = (bounds.center + bounds.extents).z;
+    }
+
+
 
     public void writeListToFile(string destFile)
     {
@@ -31,7 +63,7 @@ public class Heatmap : MonoBehaviour
         {
 
             //check if the destination file exists,
-            //if it does we need to delete it, .Copy
+            //if it does, we generate a new name,
             //will raise an exception otherwise
             while (System.IO.File.Exists(destFile))
             {
@@ -39,13 +71,9 @@ public class Heatmap : MonoBehaviour
                 destFile = transform.name.ToString() + "_log_" + numOfLogFiles.ToString() + ".log";
             }
 
-
+            // Values to be inserted before the actual heatmap data.
             Vector4[] outputArray = heatOutput.ToArray();
-            int i = outputArray.Length;
-            object[] obj = new object[i];
-            for (i = 0; i < outputArray.Length; i++)
             {
-                obj[i] = outputArray[i].ToString();
             }
 
             // use ,true if you want to append data to file
@@ -57,8 +85,6 @@ public class Heatmap : MonoBehaviour
                 {
                     file.WriteLine(line);
                 }
-
-
             Debug.Log("File written successfully");
         }
         catch (Exception ex)
@@ -115,7 +141,6 @@ public class Heatmap : MonoBehaviour
     void FixedUpdate()
     {
         if (record)
-        {   
             // Remove the next line when the functions are called the way they are supposed to be.
             if (hasWritten)
                 starttid();
