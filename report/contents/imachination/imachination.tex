@@ -174,134 +174,119 @@ kraft i en retning og exploderer når den rammer noget. Laseren rammer
 alt i en lige linje. Laseren kan ikke gå gennem vægge og har en
 begrænset rækkevidde.
 
-%[TODO: vi skal komme meget længere næste gang, ikke længere idag]
+% [TODO: vi skal komme meget længere næste gang, ikke længere idag]
 
 Det blev besluttet af vores lead programmør at vi skulle implementere
 en allerede udviklet A* pathfinding som vi fandt på
 nettet. Implementeringen havde både A* pathfinding samt en modul til
 at generere et grid med et nemt brugerinterface. Desværre var det ikke
 helt så smertefrit at implementere dette som først antaget. Vi fik
-nogle performance problemer og da vi i spillets tredje bane har 50 små
-fjender som jagter dig på en gang måtte dele af koden omskrives for at
-bruge mindre ressourcer. Det var hovedsageligt selve styrringen /
-flytningen af enheder der tog mange kræfter. Derfor er løsningens
-originale måde med Unitys \textbf{charactermove} udskiftet med at
-bruge fysik til at flytte fjenderne rundt i deres fremadretning. Da
-denne løsning ikke kunne bruge knudernes højde og fjenderne derved
-f.eks. ikke går op ad bakker men derimod igennem dem brugte vi Unitys
-indbyggede funktion til at se hvor højt et terræn er på et givent
-punkt. Fjenderne translateres derefter op i y-retningen så de kommer
-til at stå oven på terrænet istedet for nede i jorden eller oppe i
-luften.
+nogle ydelsesproblemer og da vi i spillets tredje bane har 50 små
+fjender som jagter dig på en gang. Derfor måtte dele af koden
+omskrives for at bruge mindre ressourcer. Det var hovedsageligt selve
+styringen/flytningen af enheder der tog mange kræfter. Derfor
+udskiftede vi Unitys indbyggede funktionalitet til at flytte figurer
+med en ren kraftbaseret udgave. Derfor mistede vi også Unitys
+kollissionsdetektering, så fjenderne kunne gå gennem terrænet. Derfor
+blev de altid flyttet, så de var ovenpå terrænet.
 
 Jeg arbejdede en del sammen med holdets animator da han skulle animere
-de små fjender. Når først vi havde overvundet de første problemer med
-at få tingene til at spille sammen med Unity så var det ganske nemt at
-crossfade mellem animationer og derved få det til at se nogenlunde
-glidende ud.
+de små fjender. Da vi havde overvundet de første problemer med at få
+tingene til at spille sammen med Unity, var det ganske nemt at skifte
+mellem animationer og samtidig få det til at se glidende ud.
 
 \subsection{Problemer og udfordringer}
 
 Undervejs i projektet gennemgik vores styrringssystem flere
-itterationer. Vi havde mange problemer med at få maskinen til at
-opføre sig naturligt uden at introdusere nye problemer. F.eks. ville
+iterationer. Vi havde mange problemer med at få maskinen til at
+opføre sig naturligt uden at introducere nye problemer. F.eks. ville
 vi gerne have maskinen til at tippe hvis den holdt på en skrå flade,
-men den måtte samtidig ikke kunne tippe hele vejen over. Dette løste
-vi ved at fastlåse den maksimale hældning maskinen kan have.
+men den måtte samtidig ikke kunne vende på hovedet. Derfor lavede vi
+en maksimal hældning, maskinen kunne have.
 
-Vi havde også en del problemer med feedback i vores spil. Undervejs i
-udviklingen var det en meget tom fornemmelse at køre rundt og skyde
-ting. Derfor blev der gjort noget ud af at tilføje feedback til både
-våben og fjender. Laseren har fået tilføjet et rekyl så hvis man
-sætter flere på den ene siden af maskinen end den anden vil man rykke
-til den modsatte side når de skyder. Fjenderne flyver ud af billedet
-med ild i halen når de bliver slået ihjel og de hives hvor de kommer
-fra skubber en væk når de skyder.
-
-Undervejs i produktionen blev der brugt meget af programmørernes tid
-på at hjælpe alle de andre med Unity. Det blev programmørernes opgave
-at indsætte alt visuelt og lyd i spillet fordi ingen tidligere havde
-fået introduktion til Unity. Det var meget naturligt at det var
-programmørerne der fik mest og hurtigst kendskab til Unity og derfor
-gik der desværre rigtig meget tid til spilde ved at hjælpe de andre.
+Vi havde også en del problemer med den feedback spilleren skulle have:
+Undervejs i udviklingen var det en meget tom fornemmelse at køre rundt
+og skyde ting. Derfor blev der gjort noget ud af at tilføje effekter
+til både våben og fjender. Laseren har fx fået tilføjet rekyl, der
+rykker maskinen en smule når våbenet affyres. Fjenderne flyver ud af
+billedet med ild i halen når de bliver slået ihjel og de bygninger
+hvor de kommer fra skubber spillerens maskine væk når de skyder.
 
 \subsection{KI i spillet}
 
-Vores små fjender bruger en simpel A\* pathfinding algoritme. Der
-bliver genereret et grid indenfor en boundingbox ved hjælp af
-raytracing kastet højt oppe fra. Ved alle intersects bliver der lavet
-en knude. Hvis rayen kolliderer med et object tagged som ``wall'' kan
-knuden ikke benyttes. Derfor skal alle objecter der ikke kan passeres
-\textbf{tagges} som ``wall''.  De finder derefter den korteste vej til
-spilleren og roterer så deres \textbf{forward}-vektor peger mod den
-næste knude i stien. De bliver hele tiden flyttet frem i deres
-fremadretningen. Hvis de vender væk fra den vej de gerne vil bliver
-bevægelseshastigheden sat ned proportionalt med vinklen mellem den
-ønskede retning og den nuværende retning.  Når en fjende kommer tæt
-nok på spilleren stopper den bevægelse mod fremadretningen og roterer
-blot mod spilleren samtidig med den angriber.  Oprindeligt var der
-lagt op til to typer fjender. Vi ville have implementeret nogle
-skydende versioner af de små fjender, sådan at de ikke alle blot løber
-hen i døden, men på grund af tidsmangel blev disse fraskrevet.
-
-Vores boss KI bruger samme pathfinding som de små fjender. Den har
-blot fået tilføjet en feature hvor den vurderer om den kan ramme med
-nogle af dens skydevåben på afstand. Hvis den ser at den kan ramme med
-et skydevåben (spilleren er indenfor eller i den rigtige afstand, samt
-der kan raycastes direkte hen og ramme spilleren uden at ramme
-forhindringer) roterer den således at den får peget et skydevåben i
-spillerens retning. Jo længere tid der bliver brugt på at skyde med
-skydevåbene jo højere vægt får disse og bossen bliver derfor mere
-tilbøjelig til at skifte strategi og køre hen til spilleren og forsøge
-at bruge nærkampsvåben. Denne vægt falder så over tid så hvis man
-kører væk fra bossen skifter han taktik til igen at skyde efter en.
-
-I det originale design var det meningen at vi ville have implementeret
-seek and flee, samt en vægtning af våben så bossen kunne se om han var
-stærkere i nærkamp end dig og ligeledes på afstand. På grund af
-tidsmangel i projektet blev disse ting dog skåret fra, for da spillet
-henvender sig til 6-7 årige børn vurderede holdet at der var lille
-udbytte i at have disse features frem for andre.
+Vores små fjender bruger en simpel A* pathfinding algoritme. Der
+bliver genereret et gitter, der viser de gangbare område. Fjenderne
+finder derefter den korteste vej til spilleren og roterer, så har
+fronten mod næste punkt på vejen. Når en fjende kommer tæt nok på
+spilleren, stopper den og begynder at angribe spillerens maskine.
 
 Vores små fjender er dem der skaber liv i banerne. Deres formål er til
-dels at jagte spilleren så der kommer masser af bevægelse i spillet,
-dels at blive pløjet ned så spilleren får lov at se sine våben udfolde
-sig og skyde modstandere. Det er disse fjender som vil skabe
-grundlaget for afprøvningen af KI'en i spillet da det er disse som
-skaber mulighederne for både alternativt gameplay samt guider
-spilleren hen mod de hives der spawner fjenderne og derved leder
-spilleren mod dens mål. Hvis der havde været mere tid til projektet
-havde disse fjender været en oplagt mulighed at udvide. Sammen med nye
-våben kunne de f.eks. dø på forskellige måder alt efter hvilket våben
-de er blevet skudt med og derved give en masse feedback til spilleren.
+dels at jagte spilleren, så der kommer masser af bevægelse i spillet.
+Desuden lever de for at blive pløjet ned, så spilleren får lov at se
+sine våben udfolde sig. Hvis der havde været mere tid til projektet
+havde disse fjender været en oplagt mulighed at udvide. Fx kunne de
+have fået nye våben. De kunne også dø på forskellige måder, alt efter
+hvilket våben de er blevet skudt med. Derved kunne spilleren få en
+masse feedback.
 
-Bossen spiller to roller. Den ene rolle er udfordringen som du skal
-overkomme for at gøre dig fortjent til at spille næste bane. Da de små
-fjender dør ekstremt let er det en smule mere tilfredsstillende at få
-lov til at slå en lidt større maskine ihjel. Derudover giver bossen et
-nyt våben som belønning hvis det lykkedes spilleren at vinde kampen.
-Den anden rolle bossen spiller er en form for tips og tricks til
-spilleren. Da der i spillet ikke er en særlig god tutorial har bossen
-også til formål at vise et eksempel på hvordan man kunne bygge sin
+Oprindeligt var der lagt op til to typer fjender. Vi ville have
+implementeret nogle skydende versioner af de små fjender, sådan at de
+ikke alle blot løber hen i døden. På grund af tidsmangel blev
+disse fraskrevet.
+
+Det er små fjender, som vil skabe grundlaget for afprøvningen af
+KI'en i spillet. Det er dem, som skaber mulighederne for både
+alternativt gameplay, samt guider spilleren hen mod hans mål:
+bygningerne, der \emph{spawner} fjender.
+
+Vores boss KI bruger samme pathfinding som de små fjender. Desuden
+vurderer den om den kan ramme med nogle af dens skydevåben på
+afstand. Hvis den ser at den kan ramme med et skydevåben, roterer den
+således at skydevåbenet peget i spillerens retning. Jo længere tid der
+bliver brugt på at skyde med et våben, jo lavere vægt får det. Derfor
+bliver bossen mere tilbøjelig til at skifte strategi. Det medfører at
+han kører hen til spilleren og forsøger at bruge
+nærkampsvåben. Skydevåbenets vægt stiger kontinuerligt over tid, så
+hvis man kører væk fra bossen, skifter han taktik til igen at skyde
+efter en.
+
+I det originale design var det meningen at vi ville have implementeret
+``seek and flee''\citep[afsnit 3.3.3]{aigames}. Desuden skulle bossen
+kunne vurdere sin våbenstyrke i forhold til spilleren i henholdsvis
+nærkamp og på afstand. På grund af tidsmangel i projektet blev disse
+ting dog skåret fra. Holdet vurderede at der var for lille udbytte i
+disse features, da spillet henvender sig til 6-7 årige børn.
+
+Bossen har flere formål. Den skal være udfordringen som spilleren skal
+overkomme, for at gøre sig fortjent til at spille næste bane. Da de
+små fjender dør ekstremt let er det en smule mere tilfredsstillende at
+få lov til at slå en lidt større maskine ihjel. Derudover giver bossen
+et nyt våben som belønning hvis det lykkes spilleren at vinde kampen.
+Desuden skal bossen fungere som tips og tricks til at bruge
+våbene. Desuden skal han være et eksempel på hvordan man kan bygge en
 maskine.
 
-\subsection{konklussion på produktet} Der er en masse ting i
-udviklingsprocessen der kunne være gjort anderledes og
-bedre. F.eks. ville det have været godt med lidt mere planlægning i
-udviklingen blandt programmørerne. Der er også flere ting i spillet
-som kunne være blevet forbedret. Med nogle ting så som styringen var
-vi hæmmet af de krav der var blevet udstedt fra DADIUs side, men andre
-ting såsom flere våben, bedre feedback og mere variet gameplay gennem
-de forskellige baner kunne være opnået ved at have lidt længere tid
-til at udvikle.  I sidste ende er det dog et meget fint produkt vi har
-fået skabt på meget kort tid. Det har potentiale til at blive rigtig
-godt hvis der udvikles videre på det. Vi fik også meget positiv
-respons på spillet til evaluering på DADIU og alle tre dommere så
-potentiale i spillet. Det blev enda nævnt at vi skulle ændre
-aldersgruppen 30 år op så de også kunne få lov at spille spillet.
+\subsection{Konklusion på produktet}
+\label{sec:konkl-pa-prod}
+
+Der er en masse ting i udviklingsprocessen, der kunne være gjort
+anderledes og bedre. Fx ville det have været godt med lidt mere
+planlægning i udviklingen blandt programmørerne. Der er også flere
+ting i spillet som kunne være blevet forbedret. Med nogle ting, så som
+styringen, var vi hæmmet af de krav der var blevet udstedt fra DADIUs
+side. Andre ting, såsom flere våben, bedre feedback og mere varieret
+gameplay gennem de forskellige baner, kunne være opnået ved at have
+lidt længere tid til at udvikle. I sidste ende synes jeg dog at det er
+et meget fint produkt vi har fået skabt på meget kort tid. Det har
+potentiale til at blive rigtig godt hvis der udvikles videre på
+det. Vi fik også meget positiv respons på spillet til evaluering på
+DADIU og alle tre dommere så potentiale i spillet. Det blev enda nævnt
+at vi skulle ændre aldersgruppen 30 år op, så censorerne også kunne få
+lov at spille spillet. Censorerne foreslog også, at spillet blev
+omdannet til et multiplayer-spil, eventuelt i form af et
+MMO\footnote{Massively Multiplayer Online}-spil.
 	
-
-
-
-%%% Local Variables: %%% mode: latex %%% TeX-master: "../../report"
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../report"
 %%% End:
