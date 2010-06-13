@@ -2,18 +2,25 @@
 \section{Indsamling af data}
 \label{sec:dataindsamling}
 
-Når vi skal teste indflydelsen af KI'en i spillene skal vi logge noget
-data der kan afspejle det. Vi har valgt at generere Heatmaps og notere
-hvor lang tid det tager at gennemføre banerne. For at kunne generere
-et heatmap logger vi hvert 0,2 sek. hvor spilleren befinder sig i
-banen. Dette bliver repræsenteret i X,Y,Z koordinater. Tiden og
-koordinaterne bliver så gemt i en logfil som senere kan læses og laves
-til et heatmap.  Grunden til at vi har valgt heatmaps er simpel. Da
-det er meget svært at lave spiltest med børn og få dem til at svare på
-avancerede spørgeskemaer har vi valgt at logge data. Derudover er det
-også svært at måle variabler om hvor sjovt et spil er. Derfor har vi
-valgt at se på hvor spilleren bevæger sig i spillet samt tidsforbrug,
-da vi tydeligt kan se hvis der er ændringer i spillerens adfærd.
+Når vi skal teste indflydelsen af KI'en i spillene, skal vi logge
+noget data der kan afspejle spillerens progression.
+
+Vi har valgt at generere heatmaps og notere hvor lang tid det tager at
+gennemføre banerne. For at kunne generere et heatmap logger vi fem
+gange i sekundet, hvor spilleren befinder sig i banen. Dette bliver
+repræsenteret i $(x, y, z)$-koordinater. Tiden og koordinaterne bliver
+gemt i en logfil som senere kan læses og laves til et heatmap.
+
+Grunden til at vi har valgt heatmaps er simpel. Det er svært at lave
+spiltest med børn og få dem til at svare på avancerede
+spørgeskemaer. Derudover er det også svært at måle hvor sjovt et spil
+er. Derfor har vi valgt udelukkende at se på hvor spilleren bevæger
+sig i spillet, samt spillerens tidsforbrug, da vi her tydeligt kan se,
+hvis der er ændringer i spillerens adfærd.
+
+Desuden var det nødvendigt at dataindsamlingen fungerede ensartet i
+alle tre spil, hvorfor vi ikke har valgt at indsamle spilspecifik
+data.
 
 %%% Local Variables: 
 %%% mode: latex
