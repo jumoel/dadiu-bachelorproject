@@ -9,6 +9,8 @@ public class Heatmap : MonoBehaviour
 
     public bool record;
     public List<Vector4> heatOutput = new List<Vector4>();
+	public GameObject container;
+	public String logName;
     private Vector4 heatGather;
     public Transform target;
     private float theTimeBefore;
@@ -26,10 +28,25 @@ public class Heatmap : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        fileName = transform.name.ToString() + "_log_" + numOfLogFiles.ToString() + ".log";
-        Debug.Log("fileName");
+        fileName = Application.loadedLevelName + "_" + transform.name.ToString() + "_log_" + numOfLogFiles.ToString() + ".log";
+		if (logName !=null && logName != "") {
+			fileName = logName + "_" + fileName;
+		}
 
-        CalculateSize();
+		if (container == null) {
+			CalculateSize();
+		} else {
+			if (container.transform.renderer != null) {
+				Bounds bounds = container.transform.renderer.bounds;
+				
+				minX = (bounds.center - bounds.extents).x;
+				minY = (bounds.center - bounds.extents).y;
+				minZ = (bounds.center - bounds.extents).z;
+				maxX = (bounds.center + bounds.extents).x;
+				maxY = (bounds.center + bounds.extents).y;
+				maxZ = (bounds.center + bounds.extents).z;
+			}
+		}
 
     }
 
