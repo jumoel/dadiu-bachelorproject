@@ -141,6 +141,7 @@ public class Heatmap : MonoBehaviour
     void FixedUpdate()
     {
         if (record)
+        {
             // Remove the next line when the functions are called the way they are supposed to be.
             if (hasWritten)
                 starttid();
