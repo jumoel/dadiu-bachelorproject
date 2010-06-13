@@ -54,54 +54,39 @@ stede i Unity.
 \section{Ulemper ved Unity}
 \label{sec:unityulemper}
 
-Der er selvfølgelig også masser af ulemper ved Unity. Heldigvis er det
-for det meste ikke til hindring i selve spil-udviklingen, men nærmere
-små bugs eller irritationsmomenter mens man udvikler. Unity er stadig
-under udvikling og der kommer snart en ny version med endnu flere nye
-lækre funktioner.
+Der er også fejl og mangler ved Unity. Størstedelen resultater
+heldigvis kun i irritation og ikke blokerende fejl.
 
-Unity har en indbygget Asset server. Denne server virker som en rigtig
-god ide, den holder styr på commits med versionskontrol, men den
-virker bare ikke altid lige som man vil have den til. Problemet er at
-man ikke kan merge en bane som er blevet ændret af to forskellige
-personer på hver deres datamat. Det er kun den der sidst har comittet
-der får sine ændringer med. Det vil sige at man hele tiden skal holde
-styr på hvem der sidder og arbejder på hvilken bane så man ikke skal
-gøre noget arbejde flere gange. Dette kan være meget forstyrrende for
-udviklings processen. Hvis Unity skal have sin indbyggede Asset server
-til at fungere bliver de nødt til at implementere en merge funktion
-der virker til banerne. Som det er lige nu er det kun muligt at merge
-script kode, men her skal man have et mergeprogram så som TortoiseSVN
-for at det kan lade sig gi' sig.
+Et af problemerne er, at banerne i Unity gemmes i et binært
+filformat. Det betyder, at versionskontrol ikke kan finde ud af at
+flette to version sammen. Det vil sige, at der kun er én person der
+kan arbejde i en scene på et givent tidspunkt, og det skaber en
+flaskehals i udviklingsprocessen. Dette ser heldigvis ud til at blive
+løst i næste udgave af Unity, hvor de skifter til at gemme scenerne i
+et tekstformat.
 
-Et andet stort problem er når man ved en fejltagelse kommer til at
-trække rundt på filer i mapperne inde i Unity. Hvis man trækker en fil
-fra en mappe og til den samme mappe kommer der en fejl. I stedet for
-at der ikke sker noget som helst får man en fejlmeddelelse. Til denne
-meddeelse har man tre svar muligheder, \emph{Try Again}, \emph{Cancel}
-og \emph{Force Quit}. Hvis man i skyndingen, kommer til at trykke
-\emph{Force Quit} lukker Unity ned, uden at gemme det arbejde man sad
-og var igang med. Så hvis man først har fået sin commit overskrevet af
-en anden preceerende commit, derefter laver sine ændringer igen, og så
-kommer til at trykke \emph{Force quit}, så kan man få lov at starte
-forfra for anden gang.
+Interfacet i Unity er desuden ikke helt gennemarbejdet. Fx er der ved
+alle fejlmeddelelser (selv de trivielle) en dialogboks midt på
+skærmen, der spørger om man vil \emph{Try Again}, \emph{Cancel} eller
+\emph{Force Quit}. Det kan resultere i meget tabt arbejde, hvis man
+ved et uheld rammer \emph{Force Quit} enten vha. musen, eller fordi
+man er ved at skrive på tastaturet.
 
-I unity er hvert objekt i C\# også et objekt i unity banen. Dette
-virker først ret smart, men problemet er at man ikke kan have et tomt
-objekt uden det pludselig ender i ens bane et sted. Samtidig kan hvert
-objekt kun tilhøre et layer, og have et tag på sig. Det vil sige at
-ting som har flere funktioner ikke kan tagges med alle deres
-funktioner. Så skal man til at søge igennem alle objekter med et
-præcist navn på det objekt man skal bruge, i stedet for bare at få fat
-på det ved at referere til et tag. Nogle af os havde flere problemer
-med dette end andre.
+I Unity kan man tilføje \emph{layers} og \emph{tags}, der kan bruges
+til at angive egenskaber, til objekter. På trods af navnene, kan man
+dog kun tilføje ét \emph{layer} og ét \emph{tag} til hvert
+element. Det er et problem, hvis objekter har flere egenskaber, man
+gerne vil \emph{tagge}. Løsningen bliver, at man tilføjer tomme
+\emph{scripts} og lader dem agere \emph{tags}.
 
+Unity lægger meget op til brug af tråde i form af
+\emph{coroutines}. Problemet er, at Unity ikke er trådsikkert, så der
+er noget funktionalitet man må undlade at bruge, hvis man vælger at
+bruge tråde.
 
-
-
-% asset server
-% binært sceneformat
-% ikke trådsikkert, men opfordrer til brug af tråde
+Det kan derudover også være ret besværligt at anvende andre teksturer
+end ``normale'', fx hvis man anvender film- eller
+\emph{GUI}-teksturer.
 
 %%% Local Variables: 
 %%% mode: latex
