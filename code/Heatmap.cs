@@ -72,8 +72,26 @@ public class Heatmap : MonoBehaviour
             }
 
             // Values to be inserted before the actual heatmap data.
+            int extraValues = 7;
+
             Vector4[] outputArray = heatOutput.ToArray();
+            int outArrayLength = outputArray.Length + extraValues;
+            object[] obj = new object[outArrayLength];
+
+            obj[0] = "Min X value: " + minX.ToString();
+            obj[1] = "Min Y value: " + minY.ToString();
+            obj[2] = "Min Z value: " + minZ.ToString();
+            obj[3] = "Max X value: " + maxX.ToString();
+            obj[4] = "Max Y value: " + maxY.ToString();
+            obj[5] = "Max Z value: " + maxZ.ToString();
+            obj[6] = "Key: charpos in X , Y , Z , Time since start capture";
+
+
+            int j = extraValues;
+            for (int i = 0; i < outputArray.Length; i++)
             {
+                obj[j] = (outputArray[i].x.ToString() + " , " + outputArray[i].y.ToString() + " , " + outputArray[i].z.ToString() + " , " + outputArray[i].w.ToString());
+                j++;
             }
 
             // use ,true if you want to append data to file
@@ -81,10 +99,12 @@ public class Heatmap : MonoBehaviour
             // file location, name, and ext.  then when you press save it will save it
 
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(destFile))
+            {
                 foreach (string line in obj)
                 {
                     file.WriteLine(line);
                 }
+            }
             Debug.Log("File written successfully");
         }
         catch (Exception ex)
