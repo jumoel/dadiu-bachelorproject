@@ -9,8 +9,8 @@ public class Heatmap : MonoBehaviour
 
     public bool record;
     public List<Vector4> heatOutput = new List<Vector4>();
-	public GameObject container;
-	public String logName;
+    public GameObject container;
+    public String logName;
     private Vector4 heatGather;
     public Transform target;
     private float theTimeBefore;
@@ -24,30 +24,38 @@ public class Heatmap : MonoBehaviour
     private float maxX;
     private float maxY;
     private float maxZ;
+    private int extraValues;
 
     // Use this for initialization
     void Start()
     {
+        // Values to be inserted before the actual heatmap data.
+        extraValues = 7;
+
         fileName = Application.loadedLevelName + "_" + transform.name.ToString() + "_log_" + numOfLogFiles.ToString() + ".log";
-		if (logName !=null && logName != "") {
-			fileName = logName + "_" + fileName;
-		}
+        if (logName != null && logName != "")
+        {
+            fileName = logName + "_" + fileName;
+        }
 
-		if (container == null) {
-			CalculateSize();
-		} else {
-			if (container.transform.renderer != null) {
-				Bounds bounds = container.transform.renderer.bounds;
-				
-				minX = (bounds.center - bounds.extents).x;
-				minY = (bounds.center - bounds.extents).y;
-				minZ = (bounds.center - bounds.extents).z;
-				maxX = (bounds.center + bounds.extents).x;
-				maxY = (bounds.center + bounds.extents).y;
-				maxZ = (bounds.center + bounds.extents).z;
-			}
-		}
+        if (container == null)
+        {   // Calculate the size of the map.
+            CalculateSize();
+        }
+        else
+        {
+            if (container.transform.renderer != null)
+            {
+                Bounds bounds = container.transform.renderer.bounds;
 
+                minX = (bounds.center - bounds.extents).x;
+                minY = (bounds.center - bounds.extents).y;
+                minZ = (bounds.center - bounds.extents).z;
+                maxX = (bounds.center + bounds.extents).x;
+                maxY = (bounds.center + bounds.extents).y;
+                maxZ = (bounds.center + bounds.extents).z;
+            }
+        }
     }
 
 
@@ -84,45 +92,48 @@ public class Heatmap : MonoBehaviour
             //will raise an exception otherwise
             while (System.IO.File.Exists(destFile))
             {
-                numOfLogFiles++;
-                destFile = transform.name.ToString() + "_log_" + numOfLogFiles.ToString() + ".log";
+                numOfLogFiles++; 
+                destFile = Application.loadedLevelName + "_" + transform.name.ToString() + "_log_" + numOfLogFiles.ToString() + ".log";
             }
-
-            // Values to be inserted before the actual heatmap data.
-            int extraValues = 7;
-
-            Vector4[] outputArray = heatOutput.ToArray();
-            int outArrayLength = outputArray.Length + extraValues;
-            object[] obj = new object[outArrayLength];
-
-            obj[0] = "Min X value: " + minX.ToString();
-            obj[1] = "Min Y value: " + minY.ToString();
-            obj[2] = "Min Z value: " + minZ.ToString();
-            obj[3] = "Max X value: " + maxX.ToString();
-            obj[4] = "Max Y value: " + maxY.ToString();
-            obj[5] = "Max Z value: " + maxZ.ToString();
-            obj[6] = "Key: charpos in X , Y , Z , Time since start capture";
+        }
+        catch (Exception ex)
+        {
+            //handle any errors that occurred
+            Debug.Log(ex.Message);
+        }
 
 
-            int j = extraValues;
-            for (int i = 0; i < outputArray.Length; i++)
-            {
-                obj[j] = (outputArray[i].x.ToString() + " , " + outputArray[i].y.ToString() + " , " + outputArray[i].z.ToString() + " , " + outputArray[i].w.ToString());
-                j++;
-            }
 
+        Vector4[] outputArray = heatOutput.ToArray();
+        int outArrayLength = outputArray.Length + extraValues;
+        object[] obj = new object[outArrayLength];
+
+        object[] preObjects = preliminaries();
+
+        for (int k = 0; k < extraValues; k++)
+            obj[k] = preObjects[k];
+
+
+        int j = extraValues;
+        for (int i = 0; i < outputArray.Length; i++)
+        {
+            obj[j] = (outputArray[i].x.ToString() + " , " + outputArray[i].y.ToString() + " , " + outputArray[i].z.ToString() + " , " + outputArray[i].w.ToString());
+            j++;
+        }
+        try
+        {
             // use ,true if you want to append data to file
             // this process will open a save file dialog and give the option to choose
             // file location, name, and ext.  then when you press save it will save it
-
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(destFile))
-            {
-                foreach (string line in obj)
+            if (obj.Length != extraValues)
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(destFile))
                 {
-                    file.WriteLine(line);
+                    foreach (string line in obj)
+                    {
+                        file.WriteLine(line);
+                    }
+                    Debug.Log("File written successfully");
                 }
-            }
-            Debug.Log("File written successfully");
         }
         catch (Exception ex)
         {
@@ -131,11 +142,25 @@ public class Heatmap : MonoBehaviour
         }
     }
 
+    private object[] preliminaries()
+    {
+        object[] preObjs = new object[extraValues];
+
+        preObjs[0] = "Min X value: " + minX.ToString();
+        preObjs[1] = "Min Y value: " + minY.ToString();
+        preObjs[2] = "Min Z value: " + minZ.ToString();
+        preObjs[3] = "Max X value: " + maxX.ToString();
+        preObjs[4] = "Max Y value: " + maxY.ToString();
+        preObjs[5] = "Max Z value: " + maxZ.ToString();
+        preObjs[6] = "Key: charpos in X , Y , Z , Time since start capture";
+        return preObjs;
+    }
+
     public float starttid()
     {
         record = true;
         hasWritten = false;
-        Debug.Log("The time before " + theTimeBefore);
+        // Debug.Log("The time before " + theTimeBefore);
         return theTimeBefore;
     }
     public float sluttid()
@@ -146,27 +171,53 @@ public class Heatmap : MonoBehaviour
 
         // Reset the list
         heatOutput = new List<Vector4>();
-        Debug.Log("The time " + theTime);
+        //   Debug.Log("The time " + theTime);
         return theTime;
     }
 
     public void recordEvent(string eventName)
     {
         int numOfSameEventFiles = 0;
-        eventName = transform.name.ToString() + "_log_" + numOfSameEventFiles.ToString() + ".log";
+        eventName = eventName + "_log_";
+
+        try
+        { 
+            while (System.IO.File.Exists(eventName + numOfSameEventFiles.ToString() + ".log"))
+            {
+                numOfSameEventFiles++;
+            }
+            eventName = eventName + numOfSameEventFiles.ToString() + ".log";
+
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
+        }
+        object[] preObjects = preliminaries();
+
+        object[] eventLine = new object[extraValues + 1];
+
+        int i;
+
+        for (i = 0; i < extraValues; i++)
+            eventLine[i] = preObjects[i];
+
+        int useThisOutput = heatOutput.Count - 1;
+
+        eventLine[i - 1] = heatOutput[useThisOutput].x.ToString() + " , " + 
+            heatOutput[useThisOutput].y.ToString() + " , " + 
+            heatOutput[useThisOutput].z.ToString() + " , " + 
+            heatOutput[useThisOutput].w.ToString();
 
         try
         {
-            while (System.IO.File.Exists(eventName))
-            {
-                numOfSameEventFiles++;
-                eventName = transform.name.ToString() + "_log_" + numOfSameEventFiles.ToString() + ".log";
-            }
-
-            string eventLine = heatOutput[(heatOutput.Count - 1)].ToString();
-
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(eventName))
-                file.WriteLine(eventLine);
+            {
+                foreach (string line in eventLine)
+                {
+                    file.WriteLine(line);
+                }
+            }
 
         }
         catch (Exception e)
