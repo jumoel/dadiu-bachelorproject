@@ -15,7 +15,7 @@ public class Heatmap : MonoBehaviour
     public Transform target;
     private float theTimeBefore;
     private float theTime;
-    private int numOfLogFiles = 0;
+    private int numOfLogFiles;
     private string fileName;
     private bool hasWritten;
     private float minX;
@@ -31,6 +31,8 @@ public class Heatmap : MonoBehaviour
     {
         // Values to be inserted before the actual heatmap data.
         extraValues = 7;
+
+        numOfLogFiles = 0;
 
         fileName = Application.loadedLevelName + "_" + transform.name.ToString() + "_log_" + numOfLogFiles.ToString() + ".log";
         if (logName != null && logName != "")
@@ -86,41 +88,46 @@ public class Heatmap : MonoBehaviour
         //with any exceptions that may occur
         try
         {
-
+            numOfLogFiles = 0;
+            string oldValue;
+            string newValue;
             //check if the destination file exists,
             //if it does, we generate a new name,
             //will raise an exception otherwise
-            while (System.IO.File.Exists(destFile))
+            while (true)
+                if (System.IO.File.Exists(destFile))
+                {
+                    oldValue = @"_log_" + numOfLogFiles.ToString();
+                    newValue = @"_log_" + (numOfLogFiles + 1).ToString();
+                    destFile = destFile.Replace(oldValue, newValue);
+                    numOfLogFiles++;
+                    //Debug.Log(oldValue);
+                    //Debug.Log(newValue);
+                    //Debug.Log(destFile);
+                    //Debug.Log(numOfLogFiles);
+                }
+                else
+                {
+                    break;
+                }
+
+            Vector4[] outputArray = heatOutput.ToArray();
+            int outArrayLength = outputArray.Length + extraValues;
+            object[] obj = new object[outArrayLength];
+
+            object[] preObjects = preliminaries();
+
+            for (int k = 0; k < extraValues; k++)
+                obj[k] = preObjects[k];
+
+
+            int j = extraValues;
+            for (int i = 0; i < outputArray.Length; i++)
             {
-               destFile = destFile.Replace("_log_" + numOfLogFiles.ToString(), "_log_" + (++numOfLogFiles).ToString());
+                obj[j] = (outputArray[i].x.ToString() + " , " + outputArray[i].y.ToString() + " , " + outputArray[i].z.ToString() + " , " + outputArray[i].w.ToString());
+                j++;
             }
-        }
-        catch (Exception ex)
-        {
-            //handle any errors that occurred
-            Debug.Log(ex.Message);
-        }
 
-
-
-        Vector4[] outputArray = heatOutput.ToArray();
-        int outArrayLength = outputArray.Length + extraValues;
-        object[] obj = new object[outArrayLength];
-
-        object[] preObjects = preliminaries();
-
-        for (int k = 0; k < extraValues; k++)
-            obj[k] = preObjects[k];
-
-
-        int j = extraValues;
-        for (int i = 0; i < outputArray.Length; i++)
-        {
-            obj[j] = (outputArray[i].x.ToString() + " , " + outputArray[i].y.ToString() + " , " + outputArray[i].z.ToString() + " , " + outputArray[i].w.ToString());
-            j++;
-        }
-        try
-        {
             // use ,true if you want to append data to file
             // this process will open a save file dialog and give the option to choose
             // file location, name, and ext.  then when you press save it will save it
@@ -180,7 +187,7 @@ public class Heatmap : MonoBehaviour
         eventName = eventName + "_log_";
 
         try
-        { 
+        {
             while (System.IO.File.Exists(eventName + numOfSameEventFiles.ToString() + ".log"))
             {
                 numOfSameEventFiles++;
@@ -203,9 +210,9 @@ public class Heatmap : MonoBehaviour
 
         int useThisOutput = heatOutput.Count - 1;
 
-        eventLine[i - 1] = heatOutput[useThisOutput].x.ToString() + " , " + 
-            heatOutput[useThisOutput].y.ToString() + " , " + 
-            heatOutput[useThisOutput].z.ToString() + " , " + 
+        eventLine[i - 1] = heatOutput[useThisOutput].x.ToString() + " , " +
+            heatOutput[useThisOutput].y.ToString() + " , " +
+            heatOutput[useThisOutput].z.ToString() + " , " +
             heatOutput[useThisOutput].w.ToString();
 
         try
