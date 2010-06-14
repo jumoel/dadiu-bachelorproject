@@ -92,7 +92,7 @@ public class Heatmap : MonoBehaviour
             //will raise an exception otherwise
             while (System.IO.File.Exists(destFile))
             {
-               destFile.Replace("_log_" + numOfLogFiles.ToString(), "_log_" + (++numOfLogFiles).ToString());
+               destFile = destFile.Replace("_log_" + numOfLogFiles.ToString(), "_log_" + (++numOfLogFiles).ToString());
             }
         }
         catch (Exception ex)
