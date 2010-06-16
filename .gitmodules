@@ -1,0 +1,3 @@
+[submodule "code/heatmaps-py"]
+	path = code/heatmaps-py
+	url = git@github.com:jmoeller/heatmaps-py.git
