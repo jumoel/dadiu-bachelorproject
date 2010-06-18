@@ -3,6 +3,15 @@
 \usepackage{xspace}
 \usepackage{multirow}
 
+\newcommand{\fig}[4][8cm]{
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=#1]{#2}
+    \caption{#3}
+    \label{#4}
+  \end{figure}
+}
+
 \date{Januar 2010}
 
 \newcommand{\mytitle}{Kunstig intelligens og spillerens progression i computerspil}
