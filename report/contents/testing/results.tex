@@ -39,6 +39,10 @@ oprindelige seks planlagte.
 \label{tbl:testresultat}
 \end{table}
 
+I de følgende afsnit vil vi nøjes med at vise nogle eksempler på
+heatmaps. Alle vores genererede heatmaps kan ses i bilag [TODO INDSÆT
+REFERENCE TIL BILAG]
+
 \subsection{\ima}
 \label{sec:imatest}
 
@@ -79,6 +83,22 @@ testen med KI, mens testen uden er tæt på den minimale bevægelse.
 \subsection{\sop}
 \label{sec:soptest}
 
+På figur \ref{fig:gennemforsel-sop} ses den tid, det tog børnene at
+gennemføre banen henholdsvis uden og med kunstig intelligens.
+
+\begin{table}
+  \centering
+  \begin{tabular}{|c|cccccccccc|} \hline
+    \textbf{Barn} & \textbf{1D} & \textbf{2P} & \textbf{3D} & \textbf{4P} & \textbf{5D} & \textbf{6D} & \textbf{7D} & \textbf{8D} & \textbf{9D} & \textbf{10D}
+    \\ \hline
+    \textbf{Med KI} & - & - & - & 188 & 161 & 61 & 84 & 81 & 87 & 50 \\
+    \textbf{Uden KI} & 184 & 301 & - & 42 & 165 & 17 & 33 & 132 & 29 &
+    74\\
+    \hline
+  \end{tabular}
+  \caption{Gennemførselstider for \sop}
+  \label{fig:gennemforsel-sop}
+\end{table}
 
 \subsection{\cat}
 \label{sec:cattest}
