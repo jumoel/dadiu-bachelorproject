@@ -31,7 +31,7 @@ oprindelige seks planlagte.
   \sop og \cat.}\\
 \multicolumn{7}{|p{9cm}|}{\emph{-} betyder at spillet er spillet uden KI}\\
 \multicolumn{7}{|p{9cm}|}{Et \emph{x} angiver at barnet gav op undervejs i
-  spillet. \emph{\#} angiver at barnet ikke har spillet.}\\
+  spillet.}\\
 \multicolumn{7}{|p{9cm}|}{\emph{\#} angiver at barnet ikke har spillet.}\\\hline
 
 \end{longtable}
@@ -46,9 +46,30 @@ REFERENCE TIL BILAG]
 \subsection{\ima}
 \label{sec:imatest}
 
-\paragraph{1D} Testen med KI blev ikke gennemført med opgivet halvvejs da han
-døde og mistedet modet. Der ses dog stadig forskel på heatmappet med
-og uden KI. Han har brugt mere af banen i versionen med KI.
+På figur \ref{fig:gennemforsel-ima} ses den tid, børnene brugte på at
+spille spillet henholdsvis med og uden kunstig intelligens.
+
+\begin{table}
+  \centering
+  \begin{tabular}{|c|cccccccccc|} \hline
+    \textbf{Barn} & \textbf{1D} & \textbf{2P} & \textbf{3D} &
+    \textbf{4P} & \textbf{5D} & \textbf{6D} & \textbf{7D} &
+    \textbf{8D} & \textbf{9D} & \textbf{10D}
+    \\ \hline
+    \textbf{Med KI} & 303* & 317 & 319 & 97.6* & 93 & 238 & - & 167 & 342 & - \\
+    \textbf{Uden KI} & 233 & 238 & 124 & 179* & 124 & 112 & 136 & 167 & 87 &
+    - \\\hline
+\multicolumn{11}{|p{9cm}|}{\emph{*} betyder at barnet ikke har gennemført banen}\\
+    \hline
+  \end{tabular}
+  \caption{Gennemførselstider for \ima}
+  \label{fig:gennemforsel-ima}
+\end{table}
+
+\paragraph{1D} Testen med KI blev ikke gennemført men opgivet halvvejs
+da han døde og mistedet modet. Der ses dog stadig forskel på
+heatmappet med og uden KI. Han har brugt mere af banen i versionen med
+KI.
 
 \paragraph{2P} Der ses tydeligt forskel på heatmappet med og uden
 KI. Der er meget lidt bevægelse i heatmappet uden KI, mens heatmatted
