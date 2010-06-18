@@ -20,7 +20,7 @@ oprindelige seks planlagte.
 1D & i- & cx & s- & ix & c-\# & s\#\\
 2P & i & s-x & c-\# & i- & s\# & c\#\\ %i-x
 3D & c- & c & i & i- & s\# & s-\#\\
-4P & s & s-x & ix & i-x & cx & c-x \\
+4P & s & s-x & ix & i-x & cx & c-\# \\ %c-x
 5D & s & s- & i- & i & c & c-\\
 6D & i- & i & cx & c-x & s- & s \\
 7D & s- & s & i- & i\# & c\# & c-\#\\
@@ -47,7 +47,7 @@ heatmaps. Alle vores genererede heatmaps kan ses i bilag
 \label{sec:imatest}
 
 På figur \ref{fig:gennemforsel-ima} ses den tid, børnene brugte på at
-spille spillet henholdsvis med og uden kunstig intelligens.
+spille banen henholdsvis med og uden kunstig intelligens.
 
 \begin{table}
   \centering
@@ -119,7 +119,15 @@ banen bliver der kørt langt mere.
 \label{sec:soptest}
 
 På figur \ref{fig:gennemforsel-sop} ses den tid, det tog børnene at
-gennemføre banen henholdsvis uden og med kunstig intelligens.
+spille banen henholdsvis med og uden kunstig intelligens. Figur
+\ref{fig:aivej-sop} viser den rute KI'en går gennem banen,
+repræsenteret ved grønne prikker. Den røde farve angiver syre, der
+ikke kan betrædes. Hvide områder angiver møbler, der kan betrædes. Den
+grå kasse i venstre side af banen er indgangsdøren. Den grå kasse i
+højre side af banen er målet.
+
+\fig{contents/testing/heatmaps/dreamleap/sophie_ai.png}{KI'ens rute
+  gennem banen}{fig:aivej-sop}
 
 \begin{table}
   \centering
@@ -137,7 +145,47 @@ gennemføre banen henholdsvis uden og med kunstig intelligens.
   \end{tabular}
   \caption{Gennemførselstider for \sop}
   \label{fig:gennemforsel-sop}
+\label{sec:1d-test-sop}
+
 \end{table}
+
+\paragraph{1D} Er død mange gange. Har brugt meget tid på at forsøge
+at komme igennem banen mod højre. Fandt til sidst en lettere vej
+igennem banen og gennemførte.
+
+\paragraph{2P} Døde rigtig mange gange i et forsøg på at bevæge sig
+igennem banen mod højre. Gav op tæt ved mål, da hun døde.
+
+\paragraph{3D} Spillede ikke \sop.
+
+\paragraph{4P} Havde problemer med styringen og døde derfor et par
+gange i starten. Fulgte efter KI'en rundt i banen. Gav op i banen uden
+KI da hun døde.
+
+\paragraph{5D} Forsøgte at bevæge sig igennem banen mod højre, men
+faldt i syren en del gange. Fulgte til slut efter KI'en og
+gennemførte. Fulgte samme vej da KI'en ikke var til stede længere.
+
+\paragraph{6D} Opdagede at måldøren var åben til at starte med når
+KI'en ikke var til stede. Fulgte efter KI'en igennem banen, da den var
+til stede.
+
+\paragraph{7D} Gennemførte hurtigt banen uden KI og fulgte den rute,
+som KI'en også bruger. Brugte mere tid da KI'en blev introduceret,
+idet han var nødt til at følge med KI'en for at få åbnet måldøren.
+
+\paragraph{8D} Startede med at hoppe op på sofaen, døde efter et hop
+og blev \emph{respawnet} på bordet. Fulgte efter et par forsøg
+KI-vejen. Havde nemt ved at følge KI'en da den blev introduceret.
+
+\paragraph{9D} Fulgte efter KI'en rundt i banen. Kom igennem banen på
+den hurtigste tid (bortset fra 6D, der ``snød'') i udgaven uden KI.
+
+\paragraph{10D} Fulgte efter KI'en og kom igennem banen uden at dø. Da
+KI'en blev fjernet forsøgte han at komme direkte igennem banen mod
+højre, men døde nogle gange. Klarede til sidst banen ved stort set at
+bruge KI-vejen.
+
 
 \subsection{\cat}
 \label{sec:cattest}
