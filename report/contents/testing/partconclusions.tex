@@ -69,6 +69,9 @@ Gennemløbstiderne for de børn der gennemførte begge gennemløb (og ikke
 ``snød'', som 6D gjorde i sit første gennemløb), kan ses i tabel
 \ref{tbl:gennemforsel-sop-2}.
 
+Vores forventninger om gennemløbstid stemte altså ikke overens med de
+resultater vi opnåede fra testen.
+
 \begin{table}
   \centering
   \begin{tabular}{|c|ccccc|} \hline
@@ -83,7 +86,52 @@ Gennemløbstiderne for de børn der gennemførte begge gennemløb (og ikke
   \label{tbl:gennemforsel-sop-2}
 \end{table}
 
+Vi forventede, at der ville være flere dødsfald i \sop, når KI'en blev
+fjernet, da guiden, der viste den letteste vej gennem banen blev
+fjernet.
 
+De antal gange børnene døde i deres gennemløb kan ses på tabel
+\ref{tbl:dodsfald-sop}. 5D havde cirka samme antal dødsfald i begge
+gennemløb. 4P kan man se bort fra, da hun ikke ville spille mere, da
+hun døde første gang i andet gennemløb, og det derfor ikke er til at
+vide, hvordan hun ville have klaret sig. 6D, 7D og 9D klarede sig
+igennem begge gennemløb uden at dø. Det interessante kommer, når man
+kigger på 1D, 2P, 8D og 10D. 1D og 2P spillede aldrig banen med KI,
+men uden KI var deres antal dødsfald meget høje. Både 8D og 10D har
+højere antal dødsfald i gennemløbet. Det kan skyldes, at de ikke er
+blevet ledt den lette vej igennem banerne, som man også kan se på de
+vedlagte heatmaps. Det er især klart på figur \ref{fig:8d-conclusion},
+der viser 8Ds vej igennem banen i de forskellige gennemløb. Uden KI
+prøver han en lang række forskellige veje, og døde mange gange. Da
+KI'en i hans næste gennemløb bliver introduceret, vælger han den
+letteste vej igennem banen fra start og dør kun en enkelt
+gang.
+
+Forventningen om antal dødsfald stemte altså overens med de
+resultater vi opnåede fra testen.
+
+\begin{table}
+  \centering
+  \begin{tabular}{|c|cccccccccc|} \hline
+    \textbf{Barn} & \textbf{1D} & \textbf{2P} & \textbf{3D} &
+    \textbf{4P} & \textbf{5D} & \textbf{6D} & \textbf{7D} &
+    \textbf{8D} & \textbf{9D} & \textbf{10D}
+    \\ \hline
+    \textbf{Med KI}  & -  & -  & - & 7  & 11 & 0 & 0 & 1 & 0 & 0 \\
+    \textbf{Uden KI} & 10 & 35 & - & 1* & 8  & 0 & 0 & 9 & 0 & 8 \\
+    \hline
+    \multicolumn{11}{|p{9cm}|}{\emph{*} betyder at barnet ikke har gennemført banen}\\
+    \multicolumn{11}{|p{9cm}|}{\emph{-} betyder at barnet ikke har spillet banen}\\
+    \hline
+  \end{tabular}
+  \caption{Antal dødsfald i \sop}
+  \label{tbl:dodsfald-sop}
+\end{table}
+
+\sidebyside{contents/testing/heatmaps/dreamleap/8Dai}
+           {contents/testing/heatmaps/dreamleap/8Dai}
+           {8Ds to gennemløb af \sop}
+           {fig:8d-conclusion}
 
 
 %%% Local Variables: 
