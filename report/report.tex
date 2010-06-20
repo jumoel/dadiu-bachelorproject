@@ -1,5 +1,6 @@
 \documentclass[a4paper,11pt,danish,openany,oneside]{memoir}
 \usepackage{universityreport}
+\usepackage{bookmark}
 
 \date{Juni 2010}
 
@@ -22,7 +23,16 @@
     \klaes  & 041087-1939 & \email{klaes@diku.dk}
 }
 \title{\mytitle}
+
+\let\oldpartnumberline\partnumberline
+
 \begin{document}
+
+
+\renewcommand{\partname}{}
+\renewcommand{\printpartnum}{}
+\renewcommand{\thepart}{}
+
 
 \preamble
 TODO: Tabel referencer!!! (numre)
