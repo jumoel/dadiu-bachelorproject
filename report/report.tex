@@ -14,7 +14,7 @@
 \newcommand{\cat}{Catnapped\xspace}
 \newcommand{\sop}{Sophie's Dream Leap\xspace}
 
-\preauthor{\begin{center}\footnotesize\begin{tabular}{llll}}
+\preauthor{\begin{center}\footnotesize\begin{tabular}{lll}}
 \postauthor{\end{tabular}\end{center}}
 \author{
     \julian & 180387-1619 & \email{boolean@diku.dk} \\
@@ -22,7 +22,16 @@
     \klaes  & 041087-1939 & \email{klaes@diku.dk}
 }
 \title{\mytitle}
+
+\let\oldpartnumberline\partnumberline
+
 \begin{document}
+
+
+\renewcommand{\partname}{}
+\renewcommand{\printpartnum}{}
+\renewcommand{\thepart}{}
+
 
 \preamble
 TODO: Tabel referencer!!! (numre)
