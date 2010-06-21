@@ -7,7 +7,7 @@ auto/*
 *.lof
 *.toc
 *.aux
-*.pdf
+report.pdf
 *.synctex.gz
 *.bbl
 *.blg
