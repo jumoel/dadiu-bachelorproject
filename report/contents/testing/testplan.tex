@@ -13,7 +13,7 @@ udgaven \emph{med} kunstig intelligens først og børn der spillede
 udgaven \emph{uden} kunsting intelligens først.
 
 Fordi styringen i de tre spil er i samme kategori kan det også have
-betydning, hvilken rækkefølge de spillene bliver spillet i. Derfor
+betydning, hvilken rækkefølge spillene bliver spillet i. Derfor
 skal alle spil spilles både som nummer ét, to eller tre.
 
 Da der er tre spil og hvert spil er i to versioner, skulle testen
@@ -30,7 +30,8 @@ før har spillet spillet igennem.
 For at børnene ikke skulle spille den samme bane to gange i træk,
 valgte vi at skifte mellem spillene efter hver bane.
 
-Vi valgte på baggrund af ovenstående, at producere følgende testplan:
+Vi valgte på baggrund af ovenstående, at producere den testplan der
+ses på tabel \ref{tbl:testplan}.
 
 
 \begin{table}
@@ -46,16 +47,16 @@ Vi valgte på baggrund af ovenstående, at producere følgende testplan:
 6 & s & c- & i & s- & c & i- \\\hline
 \multicolumn{7}{|p{9cm}|}{\emph{i}, \emph{s} og \emph{c} angiver hhv. \ima,
   \sop og \cat.}\\
-\multicolumn{7}{|p{9cm}|}{\emph{-} betyder at spillet er spillet uden KI}\\\hline
+\multicolumn{7}{|p{9cm}|}{\emph{-} betyder at spillet spilles uden KI}\\\hline
 
 \end{tabular}
-\caption{Testplan TODO FIX}
+\caption{Oprindelig testplan}
 \label{tbl:testplan}
 \end{table}
 
 Da børnene skulle spille alene og uden hjælp fra andre valgte vi kun
 at have de børn der spillede spillet i rummet med computerne. Børn er
-meget sociale når de spiller computer og vi vidste at dem der så på
+meget sociale når de spiller computer og vi vidste, at dem der så på
 ville have en tendens til at komme med foreslag til hvad spilleren
 skulle gøre.
 
@@ -65,14 +66,14 @@ hvordan test med børn adskiller sig fra test med voksne. Vi have i høj
 grad fokuseret på at få de bedste resultater ud af testen, frem for at
 sikre os at vi \emph{fik} resultater.
 
-Vi erfarede at børnene gav op hvis spillet var for svært, og de ville
-derfor slet ikke gennemføre resten af testen. Det gjorde at vi, som
-kan ses af resultatet af D1's test, kunne ende med at mangle data som
+Vi erfarede at børnene gav op hvis spillet var for svært, og de derfor
+slet ikke ville gennemføre resten af testen. Det gjorde at vi, som kan
+ses af resultatet af D1's test, kunne ende med at mangle data som
 barnet muligvis ville have kunnet give os. I 1D's tilfælde nåede han
 til \cat anden gang og besluttede sig for at han ikke ville spille
-mere. Det er meget muligt, hvis det var \sop anden gang han var nået
-til først, at han ville have gennemført testen af \sop før han mistede
-modet til \cat. 
+mere. Det er meget muligt, at det er \cat, der fik ham til at give
+op. Havde han spillet er andet spil i stedet, ville han muligvis have
+fortsat.
 
 Et andet problem var at nogle af børnenes koncentrationsevne var
 nedsat da de var nervøse for at gå glip af hvad deres venner lavede
@@ -89,16 +90,16 @@ for tre halve sæt.
 For at afhjælpe problemet med koncentrationsevnen valgte vi at have
 flere børn i rummet af gangen. Der var stadig kun et barn der
 spillede, og med hjælp fra en pædagog lykkedes det os at holde de
-andre i ro uden at forstyrre. Blot det at de ikke var næsten alene i
-rummet gjorde at børnene fik langt større tålmodighed til at spille
-spillene igennem.
+andre i ro uden at forstyrre. Blot det, at de ikke var alene i rummet,
+gjorde, at børnene fik langt større tålmodighed til at spille spillene
+igennem.
 
 Vi forsøgte at gøre vores brugertest så uformel som muligt. Som vi
 tidligere har omtalt så er børn meget opsatte på at hjælpe til hvis
 man spørger dem om det. Vi ville gerne have at børnene spillede som
-hvis de selv sad derhjemme og hyggede sig med spillene for dem
-selv. Derfor skulle vi undgå at de ændrede deres spillemønster for at
-tilfredsstille os. Vi gjorder derfor meget lidt ud af at fortælle dem
+hvis de selv sad alene derhjemme og hyggede sig med spillene. Derfor
+skulle vi undgå at de ændrede deres spillemønster for at
+tilfredsstille os. Vi gjorde derfor meget lidt ud af at fortælle dem,
 hvad det var de medvirkede i, og spurgte dem blot om de ville spille
 computerspil.
 
