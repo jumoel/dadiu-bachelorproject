@@ -4,7 +4,7 @@
 
 Som tidligere nævnt måtte vi ændre vores testplan under testen, for at
 sikre os at få noget data vi kunne bruge. Den faktiskte testplan ses i
-tabel \ref{tbl:testresultat} på side \pageref{tbl:testresultat}.
+tabel \ref{tbl:testresultat}.
 
 Der var en del af børnene der ikke gennemførte alle spillene eller som
 besluttede sig for at de ikke ville spille mere midt i
@@ -12,6 +12,7 @@ forløbet. Derfor valgte vi at teste med ti børn i stedet for de
 oprindelige seks planlagte.
 
 \begin{table}
+\centering
 \begin{tabular}{|c|cccccc|} \hline 
 
 \textbf{Barn} & \textbf{Spil 1} & \textbf{Spil 2} & \textbf{Spil 3} & \textbf{Spil 4} &
@@ -23,10 +24,10 @@ oprindelige seks planlagte.
 4P & s & s-x & ix & i-x & cx & c-\# \\ %c-x
 5D & s & s- & i- & i & c & c-\\
 6D & i- & i & cx & c-x & s- & s \\
-7D & s- & s & i- & i\# & c\# & c-\#\\
+7D & s- & s & i- & i\# & c-\# & c\#\\
 8D & c & c-& s- & s & i- & i \\
 9D & s & s- & i- & i & c & c-\\
-10D & s & s- & c\# & c-\# & i\# & i-\#\\\hline
+10D & s & s- & c-\# & c\# & i\# & i-\#\\\hline
 \multicolumn{7}{|p{9cm}|}{\emph{i}, \emph{s} og \emph{c} angiver hhv. \ima,
   \sop og \cat.}\\
 \multicolumn{7}{|p{9cm}|}{\emph{-} betyder at spillet er spillet uden KI}\\
@@ -35,7 +36,7 @@ oprindelige seks planlagte.
 \multicolumn{7}{|p{9cm}|}{\emph{\#} angiver at barnet ikke har spillet.}\\\hline
 
 \end{tabular}
-\caption{Testresultat TODO FIX}
+\caption{Revideret testplan}
 \label{tbl:testresultat}
 \end{table}
 
@@ -70,24 +71,23 @@ spille banen henholdsvis med og uden kunstig intelligens.
 
 \paragraph{1D}
 
-Efter at være død 4 forskellige steder til 3 forskellige sæt øjne gav
+Efter at være død fire forskellige steder til tre forskellige sæt øjne gav
 han op. Desværre gav han så meget op at han ikke ville prøve spillet
 uden KI.
 
 \paragraph{2P}
 
 Efter hun var gået rundt i banen i et stykke tid uden at kunne finde
-vej gav hun op. Vi måtte fortælle hende vejen for at få en logfil.
+vej gav hun op.
 
 \paragraph{3D}
 
 Han er gået rundt i banen længe uden KI først. Han prøvede at finde
-huller i banen så han kunne kigge ud af den. Samtidig fulgte han
-efeter kakerlakker når han mødte dem. Han brugte banen til at lege i
-før han gad gøre det der var meningen, at finde ud af labyrinten. Med
-KI på gik han mere målrettet efter at komme ud, det ser ud til på
-heatmappet at han har lært banen lidt at kende. Han døde 3 gange
-undervejs, men fandt til sidst udgangen efter ikke så længe.
+huller i banen så han kunne kigge ud af den. Samtidig fulgte han efter
+kakerlakker når han mødte dem. Han brugte banen til at lege i før han
+gad gøre det der var meningen: At finde ud af labyrinten. Med KI
+inkluderet gik han mere målrettet efter at komme ud. Han døde tre
+gange undervejs, men fandt til sidst udgangen.
 
 \paragraph{4P}
 
@@ -96,42 +96,42 @@ ikke mere. Vi kunne ikke få hende overtalt til at prøve banen uden KI.
 
 \paragraph{5D}
 
-Denne dreng klarede det ret godt, han døde kun 3 gange til at begynde
+Denne dreng klarede det ret godt, han døde kun tre gange til at begynde
 med i labyrinten. Derefter fandt han rimelig hurtigt ned til den næste
 del af banen og fandt selv ud. Da han bagefter prøvede det uden KI
 blev han lidt desorienteret af at øjnene ikke var der, han havde svært
-ved at finde den samme vej igennem banen. Han fandt dog vej rimelig
-hurtigt alligevel.
+ved at finde den samme vej igennem banen.
 
 \paragraph{6D}
 
 Han gav op efter at være død to gange til øjnene da KI'en var på, men
-han havde mod på at prøve det uden KI. Denne tog et stykke tid, men
-han kom igennem langt bedre end da KI var med. 
+han havde mod på at prøve det uden KI. Denne udgave tog et stykke tid, men
+han kom til sidst igennem. 
 
 \paragraph{8D}
 
 Den første der virkelig havde det hårdt med at komme igennem banen var
 denne dreng. Men han var meget standhaftig så han klarede det med KI
-til sidst, efter 589 sekunder og at starte forfra 9 gange. Da han
+til sidst, efter 589 sekunder og at starte forfra ni gange. Da han
 skulle prøve banen bagefter uden KI kunne han genkende det hele og løb
 næsten igennem så hurtigt det er muligt.
 
 \paragraph{9D}
 
-Den sidste dreng der prøvede labyrinten var også meget standhaftig,
-han døde 7 gange før han rigtig kom ud af det første, men fandt
-heldigvis mål efter lang tid. Det tog ham ikke længe at finde vej da
-han skulle finde målet uden KI. Han kom i problemer da han skulle
-forbi en masse æsker der lå på jorden. 
+Den sidste dreng der prøvede labyrinten var også meget standhaftig.
+Han døde syv gange før han rigtig kom gennem den første halvdel af
+labyrinten. Da han endelig kom videre, gennemførte han ret hurtigt
+banen. Det tog ham ikke længe at finde vej da han skulle finde målet
+uden KI. Han kom i problemer da han skulle forbi en masse æsker der lå
+på jorden.
 
 \paragraph{Overordnet}
 
 Generelt har børnene gennemført labyrinten hurtigere uden den kunstige
-intelligens. Nogle har haft sværere ved at finde vej uden den var
-inkluderet og nogle fik alternative progressions veje. Som fx ham der
-uden KI var ligeglad med at komme igennem banen. Han ville udforske og
-se på kakerlakker eller prøve at finde fejl så han kunne komme ud af
+intelligens. Nogle har haft sværere ved at finde vej da den ikke var
+indkluderet og nogle fik alternative progressionsveje. Eksempelvis ham
+der var ligeglad med at komme igennem banen: Han ville udforske og se
+på kakerlakker eller prøve at finde fejl så han kunne komme ud af
 banen på uautoriseret vis.
 
 \subsection{\ima}
@@ -158,17 +158,16 @@ spille banen henholdsvis med og uden kunstig intelligens.
   \label{fig:gennemforsel-ima}
 \end{table}
 
-\paragraph{1D} Testen med KI blev ikke gennemført men opgivet halvvejs
-da han døde og mistedet modet. Der ses dog stadig forskel på
-heatmappet med og uden KI. Han har brugt mere af banen i versionen med
-KI.
+\paragraph{1D} Testen med KI blev opgivet halvvejs da han døde og
+mistedet modet. Der ses dog stadig forskel på heatmappet med og uden
+KI. Han har brugt mere af banen i versionen med KI.
 
 \paragraph{2P} Der ses tydeligt forskel på heatmappet med og uden
 KI. Der er meget lidt bevægelse i heatmappet uden KI, mens heatmatted
 med udnytter næsten hele banen.
 
 \paragraph{3D} I udgaven uden KI er utroligt lidt af banen udnyttet,
-der bliver kørt meget målrettet og præcist. I udgaven med KI er der
+og der bliver kørt meget målrettet og præcist. I udgaven med KI er der
 lidt mere bevægelse i banen, men stadig ikke hele banen bliver brugt.
 
 \paragraph{4P} Havde meget svært ved spillet. I testen uden KI kunne
@@ -191,20 +190,19 @@ og udgaven uden KI.
 \paragraph{9D} Stor forskel på med og uden KI. Langt mere bevægelse i
 testen med KI, mens testen uden er tæt på den minimale bevægelse.
 
-\paragraph{10D} Spilleren nåede ikke at spille \ima.
+\paragraph{10D} Spilleren nåede ikke at spille \ima. \\
 
 Hvis man kigger på heatmaps fra børnene der gennemførte spillet både
 med og uden KI er der en tendens der går igen i de fleste af
-tilfældende. I figur \ref{fig:imachination2Pai} og
-\ref{fig:imachination2Pnoai} ser vi et tydeligt eksempel på
-forskellen med og uden KI. Der er stor forskel på hvor meget af banen
-der bliver benyttet af spilleren. Istedet for at parkere få steder på
-banen bliver der kørt langt mere.
+tilfældende. I figur \ref{fig:imachination2Painoai} ser vi et tydeligt
+eksempel på forskellen med og uden KI. Der er stor forskel på hvor
+meget af banen der bliver benyttet af spilleren. Istedet for at
+parkere få steder på banen bliver der kørt langt mere.
 
-\fig{contents/testing/heatmaps/imachination/2Pai.png}{\ima 2P med
-  KI}{fig:imachination2Pai}
-\fig{contents/testing/heatmaps/imachination/2Pnoai.png}{\ima 2P uden
-  KI}{fig:imachination2Pnoai}
+\sidebyside[0pt]{contents/testing/heatmaps/imachination/2Pai.png}
+                {contents/testing/heatmaps/imachination/2Pnoai.png}
+                {2P's gennemløb af \ima}
+                {fig:imachination2Painoai}
 
 \subsection{\sop}
 \label{sec:soptest}
@@ -256,8 +254,9 @@ faldt i syren en del gange. Fulgte til slut efter KI'en og
 gennemførte. Fulgte samme vej da KI'en ikke var til stede længere.
 
 \paragraph{6D} Opdagede at måldøren var åben til at starte med når
-KI'en ikke var til stede. Fulgte efter KI'en igennem banen, da den var
-til stede.
+KI'en ikke var til stede, og gik derfor direkte igennem banen uden at
+aktivere syren. Fulgte efter KI'en igennem banen, da den var til
+stede.
 
 \paragraph{7D} Gennemførte hurtigt banen uden KI og fulgte den rute,
 som KI'en også bruger. Brugte mere tid da KI'en blev introduceret,
