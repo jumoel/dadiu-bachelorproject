@@ -11,3 +11,4 @@ auto/*
 *.synctex.gz
 *.bbl
 *.blg
+*.lot
