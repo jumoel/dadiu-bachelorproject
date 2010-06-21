@@ -42,19 +42,22 @@
 
 \let\oldpartnumberline\partnumberline
 
-\begin{document}
+\renewcommand{\myabstract}{
+  \include{contents/abstract}
+}
 
+\begin{document}
+\frontmatter
 
 \renewcommand{\partname}{}
 \renewcommand{\printpartnum}{}
 \renewcommand{\thepart}{}
 
-
 \preamble
-\listoftables
 
-\include{contents/abstract}
 \include{contents/formalities}
+
+\mainmatter
 \include{contents/introduction}
 \include{contents/dadiu}
 \include{contents/unityintro}
@@ -64,6 +67,7 @@
 \include{contents/testing}
 \include{contents/discussion}
 \include{contents/conclusion}
+
 \include{contents/appendix}
 
 \end{document}
