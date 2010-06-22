@@ -2,43 +2,31 @@
 \chapter{Introduktion til Unity}
 \label{cha:unityintro}
 
-Unity er en \emph{WYSIWYG}\footnote{What You See Is What You
-  Get}-editor til at lave spil i.
+Unity er en den \emph{editor} vi brugte på vores
+DADIU-produktionener. Den er baseret på \emph{WYSIWYG}\footnote{What
+  You See Is What You Get}-princippet. Unitys primære formål er at
+gøre udviklingsprocessen let.
 
-% [TODO: hvordan forklarerer man hvordan Unity fungerer?]
+Alle projekter i Unity indeholder en lang række \emph{assets}:
+Lydfiler, grafik, videoer, teksturer, 3D-modeller og
+\emph{scripts}. Disse objekter kan man kombinere til nye
+``superobjekter'', som i Unity går under navnet
+\emph{prefabs}. Fordelene ved at udnytte dem, er at man kan genbruge
+komplicerede objekter på tværs af baner og nøjes med at ændre eller
+opdatere dem ét sted. En bane i et Unity-spil kaldes en
+``scene''. Scener kan dog også bruges til \emph{loading}-skærme,
+menuer, mellemsekvenser og rulletekster. Unity påfører dermed den
+objektorienterede tankegang til en \emph{drag and drop}-editor.
 
-\section{Assets}
-\label{sec:assets}
-Alle filer i et Unity projekt er \emph{assets}. De samme \emph{assets}
-kan instantieres flere gange i hver bane, eller bruges i flere
-forskellige baner. Eksempler på assets inkluderer lydfiler, teksturer,
-3D modeller og \emph{scripts}. Man kan ud lave \emph{prefabs} ud af
-\emph{assets} inde i Unity, disse er sammensætninger af andre
-\emph{assets}.
+Unity lægger op til at man programmerer sine spil, så de er
+\emph{event}-baserede. Der er indbygget funktionalitet til
+\emph{trigger}-zoner, hvor man automatisk kan sørge for, at der sker
+noget når et objekt kommer ind i zonen, opholder sig i zonen eller
+forlader zonen. Det kan man fx bruge til at have områdespecifik
+kamerastyring.
 
-\section{Triggers}
-\label{sec:triggers}
-
-En trigger kan teste om et objekt støder ind i triggerens kollisions
-boks. Denne boks kan være defineret som et usynligt objekt eller som
-noget spilleren kan se og støde ind i. Triggers kan bruges til at
-aktivere funktionalitet når fx spilleren går et bestemt sted hen. Det
-er fx triggers der afgør om man er kommet igennem en bane i \cat.
-
-\section{Koordinatsystemet}
-\label{sec:unitykoordinatsystem}
-
-Hvis vi igennem projektet bruger $X$, $Y$ og $Z$ til koordinater, vil
-bevægelse langs $X$ og $Z$ akserne svare til bevægelse på jorden. Det
-vil sige at figuren ikke kan flyve eller falde uden bevægelse langs
-$Y$ aksen.
-
-
-
-hvordan unity fungerer
-triggers
-assets
-koordinatsystem
+Koordinatsystemet i Unity er vendt således at $(x,~z)$-planet er
+vandret og $y$-aksen peger opad.
 
 %%% Local Variables: 
 %%% mode: latex
