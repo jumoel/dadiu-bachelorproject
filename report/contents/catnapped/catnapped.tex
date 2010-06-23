@@ -7,7 +7,7 @@
 
 Catnapped er en historie om en teddybamse og en kat. De bor i samme
 hus og rivaliserer om at få kærligheden fra drengen, der bor der. Vi
-ser i \ref{fig:catmenu} hvordan spillet starter, med billede af
+ser på figur \ref{fig:catmenu} hvordan spillet starter, med billede af
 drengen med kat og bamse i armene ovre til højre.
 
 \fig[\textwidth]{contents/catnapped/catnappedmenu.png}{Startmenuen, der
@@ -22,28 +22,28 @@ kat.
 
 Den første bane udspiller sig i vaskemaskinen, hvor man langsomt
 bliver hvirvlet rundt mellem sokkerne. Spilleren skal forsøge at kaste
-den snor man har på ryggen, hen på et håndtag inde i vaskemaskinen for
+den snor Teddy har på ryggen, hen på et håndtag inde i vaskemaskinen for
 at komme fri.
 
 Næste bane handler om balance. Spilleren skal passere henover brækkede
-gulvbrædder uden at falde ned. Bamsen er våd og tung, hvilket gør
+gulvbrædder uden at falde ned. Teddy er våd og tung, hvilket gør
 styringen vanskelig.
 
-Tredje bane starter med at vise en ventilator der står højt
-oppe. Spilleren får fat i ventilatoren med sin snor, og skal modvirke
+Tredje bane starter med at vise en ventilator, der står højt
+oppe. Spilleren får fat i ventilatoren med Teddys snor, og skal modvirke
 vindkraften for at trække sig helt tæt på ventilatoren. Når spilleren
 er kravlet ned fra ventilatoren, skal han bane sig vej til en skakt. 
 
 Teddy falder ned igennem skakten og befinder sig nu i en labyrint. For
-at forhindre at Teddy undslipper, forsøger katten at fange spilleren i
+at forhindre at Teddy undslipper, forsøger katten at fange Teddy i
 lyskeglerne fra sine øjne. Rundt omkring i labyrinten ligger der
 tændstikæsker. Disse kan bruges til at gemme sig bag, så katten ikke
-ser Teddy. Vi kan se i \ref{fig:cateyesroach} bamsen der gemmer sig
-badved tændstikæsker for at undgå at blive set af
+ser Teddy. Vi kan på figur \ref{fig:cateyesroach} se Teddy der gemmer
+sig bag ved tændstikæsker for at undgå at blive set af
 katteøjnene. Tændstikæskerne fungerer samtidig som forhindring da de
 visse steder skal skubbes væk, for at Teddy kan komme videre. I
 labyrinten løber der kakerlakker rundt, de er med til at skabe liv i
-banen, vi kan se en kakerlak nederst i \ref{fig:cateyesroach}.
+banen. Vi kan se en kakerlak nederst på figur \ref{fig:cateyesroach}.
 
 \fig[\textwidth]{contents/catnapped/catnappedEyeRoach.png}{Illustration af
   katteøjne, tændstikæsker og kakerlak.}{fig:cateyesroach}
@@ -51,10 +51,10 @@ banen, vi kan se en kakerlak nederst i \ref{fig:cateyesroach}.
 Når spilleren er undsluppet fra labyrinten, møder han katten, som
 blokerer udgangen. Det gælder om at kaste sin snor på benene af den
 skammel, katten står på, så de går i stykker. Der er en \emph{health
-  bar}, der viser hvor langt katten er fra at falde ned. Under kampen
-forsøger katten som i labyrinten at fange spilleren med øjnene.
+  bar}, der viser, hvor langt katten er fra at falde ned. Under kampen
+forsøger katten, som i labyrinten, at fange spilleren med øjnene.
 
-Er spilleren sejrrig, undslipper Teddy og han kan sidde i ro og mag
+Er spilleren sejrrig, undslipper Teddy og han kan sidde i ro og mag i
 sin skotøjsæske og blæse sæbebobler (figur \ref{fig:catnappedwin}).
 
 \fig[\textwidth]{contents/catnapped/catnappedWin.png}{Slutbilledet for
@@ -63,34 +63,34 @@ sin skotøjsæske og blæse sæbebobler (figur \ref{fig:catnappedwin}).
 \subsection{Produktionsforløb}
 
 Vi brugte første dag i produktionsforløbet på at lære hinanden at
-kende. Vi diskuterede hvilke muligheder vi havde for styring af
+kende. Vi diskuterede, hvilke muligheder vi havde for styring af
 spillet. Det blev til fire forskellige styringsmetoder. Jeg fik til
 opgave næste dag at implementere en af styremåderne til
-Teddy: Spilleren kunne kigge med musen og rykke sig fremad når venstre
+Teddy: Spilleren kunne kigge med musen og rykke sig fremad, når venstre
 musetast blev holdt nede. Dette var den mest simple styremåde.  Andre
-løsninger indebar blandt andet at man skulle bevæge sig rundt som om
-man havde vægt på musen: Hvis man holdt den til højre for Teddy ville
+løsninger indebar blandt andet, at man skulle bevæge sig rundt som om
+man havde vægt på musen: Hvis man holdt den til højre for Teddy, ville
 han vælte mod højre og gå hurtigere, jo længere væk musen blev
 flyttet, indtil han til sidst faldt. Dette princip blev aldrig rigtig
 brugt, men det fik os til at komme på de første ideer til spillet. Vi
 havde overvejet at Teddy kunne samle ting i huset til et lille
-et-bamsesband. Det vil sige at Teddy skulle spille på tingene han
-samlede op, for at finde ud af om det var noget han kunne bruge i sit
+et-bamsesband. Det vil sige, at Teddy skulle spille på tingene han
+samlede op, for at finde ud af, om det var noget, han kunne bruge i sit
 multiinstrument.
 
-På tredjedagen blev vores endelige ide lagt fast og vi begyndte at
+På tredjedagen blev vores endelige ide lagt fast, og vi begyndte at
 udvikle. Vi skulle nå at lave en masse forskellige prototyper, da
 vores testgruppe skulle lave afprøvning allerede en uge senere.
 
 For os programmører var der hele tiden noget at se til, da der var
 mange baner planlagt fra starten. Det blev programmørernes job at
 holde styr på banerne, sætte dem sammen i Unity og sørge for at de
-kunne spilles. For det meste af tiden arbejdede vi på en bane
+kunne spilles. Det meste af tiden arbejdede vi på en bane
 hver. Mit primære fokus endte med at være labyrint-banen.
 
 Vi havde møder hver morgen på vores produktion. Møderne var en
-opdatering om hvad der var sket den foregående dag. Vi havde opsamling
-af hvilke nye arbejdsopgaver der var til den kommende dag, så alle
+opdatering om, hvad der var sket den foregående dag. Vi havde opsamling
+af, hvilke nye arbejdsopgaver der var til den kommende dag, så alle
 havde mulighed for at finde noget at lave.
 
 \subsection{Mine arbejdsopgaver}
@@ -98,9 +98,9 @@ havde mulighed for at finde noget at lave.
 % Dobbeltkonfekt med nougat!
 
 Jeg stod først og fremmest for KI-delen af vores spil. Det endte dog
-med at vi havde svært ved at få noget som helst KI implementeret i
-spillet. Se afsnittet på side \pageref{sec:KIBegraensning} for en
-forklaring på, hvorfor indholdet af KI i vores spil blev så begrænset.
+med, at vi havde svært ved at få noget som helst KI implementeret i
+spillet. Se afsnit om, hvorfor indholdet af KI i vores spil blev så
+begrænset på side \pageref{sec:KIBegraensning}.
 
 I stedet endte mine arbejdsopgaver med at være følgende:
 
@@ -119,58 +119,59 @@ Vi testede vores spil på børn mange gange i udviklingsforløbet. Nogle
 af børnene var bedre end andre, men de hjalp ofte hinanden. Børnene
 havde ikke umiddelbart problemer med at forstå styringsmåden. Det var
 dog ikke tilfældet for de voksne, der prøvede spillet. Ved
-brugertesten var det kun nogle af børnene, der forstod styremåded med
+brugertesten var det kun nogle af børnene, der forstod styremåden med
 det samme. Resten havde nogle problemer med det. Hvis nogle af de
 andre børn havde problemer med at styre var der straks hjælp at hente
 hos sidemanden. Dette var ikke tilfældet med fx den spiludgiver, der
 kom ud for at se spillet. Vi blev til sidst nødt til at forklare ham,
-at man skulle blive ved med at holde venstre museknap nede for at
+at han skulle blive ved med at holde venstre museknap nede for at
 bevæge sig.
 
-Jeg fik aldrig direkte indsigt i hvad vores resultater af brugertests
-var. Programmørene hørte kun at det gik godt hver gang og at børnene
-arbejdede sammen om problemer. Det vil sige at vi ikke fik nogen
-rigtig indsigt i om der var noget ved vores styremåder der skulle
-ændres. Det havde været lettere at optimere styremåden og regulere
-sværhedsgraden af spillet hvis vi havde været med til afprøvningerne.
+Jeg fik aldrig direkte indsigt i, hvad vores resultater af
+brugertestene var. Programmørene hørte kun, at det gik godt hver gang,
+og at børnene arbejdede sammen om problemer. Det vil sige at vi ikke
+fik nogen rigtig indsigt i, om der var noget ved vores styremåder, der
+skulle ændres. Det havde været lettere at optimere styremåden og
+regulere sværhedsgraden af spillet hvis vi havde været med til
+afprøvningerne eller fået ordentlig feedback.
 
 \subsection{Problemer og udfordringer}
 
 En af de største problemer der blev afdækket af vores brugertest var,
 at det var svært at finde rundt i labyrinten. Vi startede med et
-kamera der hele tiden var bag Teddy. Det medførte at spillerne mistede
-orienteringen og farede vild. Vi fandt ud af at vi var nødt til at
-have et mere stationært kamera så det var klarere, hvilken vej man
-gik. I første udgave roterede kameraet 90 grader af gangen, men
+kamera, der hele tiden var bag Teddy. Det medførte at spillerne
+mistede orienteringen og farede vild. Vi fandt ud af at vi var nødt
+til at have et mere stationært kamera, så det var klarere, hvilken vej
+man gik. I første udgave roterede kameraet 90 grader af gangen, men
 spillerne blev stadig desorienterede. Banen så for anderledes ud fra
 de forskellige vinkler. Derfor endte vi med at fjerne al rotation fra
 kameraet og placere det over spilleren. Her fik vi det problem at
 kameraet let kom til at være placeret bag væggene i banen, så man ikke
 kunne se Teddy. Vi forsøgte at løse dette ved at finde den rigtige
-højde for kameraet. Det gjorde at man både fik fornemmelsen af at
-kunne se toppen af kasserne men gjorde også at kameraet ikke kom for
-langt fra Teddy.
+højde for kameraet. Det gjorde, at man både fik fornemmelsen af at
+kunne se toppen af kasserne, men det gjorde også, at kameraet ikke kom
+for langt væk fra Teddy.
 
 \subsection{KI i spillet}
 
 Den kunstige intelligens i spillet endte med at være kattens øjne i
-labyrinten og den sidste bane.
+både labyrinten og den sidste bane, som er en \emph{boss}-kamp.
 
 I labyrinten er der en række \emph{waypoints}. Det bestemmes ved hjælp
-af \emph{pathfinding} hvilket waypoint spilleren er tættest på. Ved
-dette waypoint aktiveres katteøjnene, som søger efter spilleren i et
-forudbestemt mønster. Der er kun ét sæt katteøjne aktiveret af gangen.
+af \emph{pathfinding}, hvilket \emph{waypoint} spilleren er tættest på. Ved
+dette \emph{waypoint} aktiveres katteøjnene, som søger efter spilleren i et
+forudbestemt mønster.
 
 Hvis spilleren bliver opdaget inde i lyskeglen fra et sæt øjne, bliver
 han fanget af katten og skal starte banen forfra.
 
-Øjnene er kun tændt et sæt af gangen. Kun det sæt øjne som er fundet
+Øjnene er kun tændt ét sæt af gangen. Kun det sæt øjne som er fundet
 værende tættest på spilleren, af den indbyggede korteste
 vej-algoritme, er tændt. De korteste veje fra forskellige punkter til
-deres nærmeste sæt øjne, bliver kun fundet lige når banen bliver
+det nærmeste sæt øjne bliver kun fundet, lige når banen bliver
 lavet. Informationen bliver gemt i punkter i gulvet, så det er kun
-nødvendigt at finde hvilket punkt, der er tættest på spilleren, for at
-finde det tætteste øjesæt.
+nødvendigt at finde ud af hvilket punkt der er tættest på spilleren
+for at finde det tætteste øjesæt.
 
 I \emph{boss}-banen forsøger katten også at fange spilleren i lyset
 fra sine øjne. For at forhindre det, kan spilleren gemme sig bag nogle
@@ -178,71 +179,70 @@ kasser i begge sider. Når spilleren gemmer sig, følger øjnene
 efter. Derefter begynder katten at søge rundt omkring kassen for at
 forsøge at fange spilleren. Søgningen foregår vilkårligt.
 
-Vi havde under hele produktionene diskussioner om hvor og hvordan vi
-kunne få noget KI inkluderet i vores projekt, da det ikke gav mening
-at have noget som helst af det. Det var rent ekstraarbejde og ingen af
-de andre var opsatte på at der skulle god KI med i spillet. De mente
+Vi havde under hele produktionen diskussioner om hvor og hvordan vi
+kunne få noget KI inkluderet i vores projekt, da det ikke umiddelbart
+gav mening at have noget. Det var rent ekstraarbejde, og ingen af de
+andre var opsatte, på at der skulle god KI med i spillet. De mente
 ikke, at KI ville være essentielt og ej heller at det ville påvirke
 spiloplevelsen nævneværdigt.
 
 \subsection{Mulige forbedringer}
 \label{sec:Forbedringer}
 
-I slutningen af forløbet fandt vi ud af, at vi ud af at vi burde have
-styret kameraet med \emph{triggers} igennem hele banen for at få
-kameraet til at opføre sig optimalt, men det havde vi ikke tid til at
-implementere.
+I slutningen af forløbet fandt vi ud af, at vi burde have styret
+kameraet med \emph{triggers} igennem hele banen for at få kameraet til
+at opføre sig optimalt, men det havde vi ikke tid til at implementere.
 
-Det var vores meningen at labyrinten skulle kunne genereres
-proceduralt så vi havde en ny labyrint hver gang man startede
-banen. Det blev dog for stort et arbejde, men kunne have gjort banen
-meget mere interessant. Alle algoritmerne vi brugte i labyrinten blev
-derfor lavet så de kunne bruges igen og igen, lige meget hvilken
+Det var vores mening at labyrinten skulle kunne genereres proceduralt
+så vi havde en ny labyrint, hver gang man startede banen. Det blev dog
+for stort et arbejde, men kunne have gjort banen meget mere
+interessant. Alle algoritmerne vi brugte i labyrinten blev derfor
+lavet så, de kunne bruges igen og igen, lige meget hvilken
 labyrintopsætning der blev anvendt. Skulle labyrinten genereres
 proceduralt, skulle der dog også være implementeret noget
-verificering, så det blev undersøgt om det var muligt at finde vej igennem
-den genererede labyrint.
+verificering, så det blev undersøgt, om det var muligt at finde vej
+igennem den genererede labyrint.
 
-Vi overvejede på et tidspunkt i udviklingen af spillet, at indføre en
-ny figur som skulle hjælpe Teddy rundt i labyrinten. Det skulle være
-et møl som blev tiltrukket af Teddy og blev hans ven. Møllet skulle
+Vi overvejede på et tidspunkt, i udviklingen af spillet, at indføre en
+ny figur, som skulle hjælpe Teddy rundt i labyrinten. Det skulle være
+et møl, som blev tiltrukket af Teddy og blev hans ven. Møllet skulle
 kunne flyve og derved se labyrinten ovenfra. Idéen var, at man skulle
-kunne skifte kameravinkel og se møllets perspektiv så man kunne få et
-lidt bedre overblik. En anden idé var at møllet skulle guide spilleren
-igennem labyrinten. Møllet skulle også kunne advare mod farer,
-dvs. katteøjnene.
+kunne skifte kameravinkel og se møllets perspektiv, så man kunne få et
+lidt bedre overblik. En anden idé var at møllet på en måde skulle
+guide spilleren igennem labyrinten. Møllet skulle også kunne advare
+mod farer, dvs. katteøjnene.
 
-Da vi fandt ud af at vi ikke ville proceduralt generere labyrinten
+Da vi fandt ud af, at vi ikke ville proceduralt generere labyrinten
 fjernede vi også møllet som hjælperen og ændrede planen for at få
 indført KI i spillet. I stedet skulle der implementeres
-\emph{flocking}\citep{flocking} på de kakerlakker der går rundt i
-banen. De skulle søge hen mod Teddy når han kom indenfor en bestemt
+\emph{flocking}\citep{flocking} på de kakerlakker, der går rundt i
+banen. De skulle søge hen mod Teddy, når han kom indenfor en given
 radius af dem. Jo flere kakerlakker der var omkring Teddy, jo sværere
 skulle det være at bevæge sig rundt. Samtidig skulle katteøjnene
-begynde at følge hurtigere og hurtigere efter kakerlakkernes ``lyd''
-jo flere kakerlakker der var. Dette skulle gøre banen langt sværerere
-at komme igennem men samtidig give mulighed for alternativt gameplay,
-da vi ville implementere mulighed for at træde på kakerlakkerne og
-dermed få dem til at forsvinde. Stødte man senere ind i nye
-kakerlakker ville de begynde at følge efter spilleren påny.
+begynde at følge hurtigere og hurtigere efter kakerlakkernes 'lyd', jo
+flere kakerlakker der var. Dette skulle gøre banen langt sværerere at
+komme igennem, men samtidig give mulighed for alternativt gameplay, da
+vi ville implementere mulighed for at træde på kakerlakkerne og dermed
+få dem til at forsvinde. Stødte man senere ind i nye kakerlakker, ville
+de begynde at følge efter spilleren på ny.
 
 \subsection{Hvorfor KI i spillet var begrænset}
 \label{sec:KIBegraensning}
 
-Det er sandsynligvis min egen skyld at der til sidst ikke kom så meget
-KI med i spillet som jeg gerne ville have. Det tog mig for lang tid at
-prøve at finde en algoritme til 2D flocking på kakerlakkerne, jeg
-burde have skrevet den selv fra starten. Jeg fik ikke lov til at
-inkludere det møl vi havde overvejet da det ville kræve for meget
-ekstra arbejde for de andre på holdet. Til sidst var der bare for
-mange ting at få rettet igennem til at jeg fik tid til at se på
-flocking. Problemet var også at der aldrig blev taget hensyn til at
-jeg gerne ville have mere KI med i spillet. At få flocking på
-kakerlakkerne ville ikke ændre det generelle udtryk man fik af spillet
-som helhed. Det ville have været en ekstra gode, men vores game
-designer kunne ikke se hvilke muligheder det kunne åbne op for. Jeg
-mente, at det kunne give spilleren et alternativt mål med banen, idet
-de måske ville finde kakerlakkerne sjove at lege med.
+Det er delvist mit ansvar, at der til sidst ikke kom så meget KI med i
+spillet som jeg gerne ville have. Det tog mig for lang tid at prøve at
+finde en algoritme til 2D flocking på kakerlakkerne: Jeg burde have
+skrevet den selv fra starten. Jeg fik ikke lov til at inkludere det
+møl, vi havde overvejet, da det ville kræve for meget ekstra arbejde
+fra de andre på holdet. Til sidst var der for mange ting at få rettet
+igennem til, at jeg fik tid til at se på flocking. Problemet var også
+at der i for lav grad blev taget hensyn til, at jeg gerne ville have
+mere KI med i spillet. At få flocking på kakerlakkerne ville ikke
+ændre det generelle udtryk, man fik af spillet som helhed. Det ville
+have været en ekstra gode, men vores game designer kunne ikke se,
+hvilke muligheder det kunne åbne op for. Jeg mente, at det kunne give
+spilleren et alternativt mål med banen, idet de måske ville finde
+kakerlakkerne sjove at lege med.
 
 %%% Local Variables: 
 %%% mode: latex 
